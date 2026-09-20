@@ -1,0 +1,19 @@
+Macarchy is an independent macOS project. It is not an official Omarchy or Omacy release.
+
+The shared native renderer, engine bridge and configuration code are adapted from
+Omacy, copyright (c) 2026 Peter Dedene, MIT License.
+Pinned source: https://github.com/dedene/omacy/commit/45379ab3257f5dd1e9cf4678f96c70ef1ac946bd
+See ThirdParty/Omacy/LICENSE. Internal Omacy symbol names preserve code provenance.
+
+Some shared native code is copyright (c) 2026 Guillaume Louel, MIT License.
+See ThirdParty/Omacy/Aerial-LICENSE.
+
+The effects originate in TerminalTextEffects by ChrisBuilds and run through ttfx.
+See vendor/ttfx/LICENSE, vendor/ttfx/NOTICE and vendor/ttfx/PIN.
+The patched bridge uses ttfx v0.3.2; see vendor/patches/ttfx-omacy.patch.
+
+The Fairfax HD font is copyright (c) 2017-2020 Kreative Software and is distributed
+under SIL Open Font License 1.1. See Resources/OFL.txt.
+
+Upstream artwork retained in assets/ is used only for test fixtures.
+The distributed Macarchy name, icon and default artwork are separate from Omacy branding.
