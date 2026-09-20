@@ -1,0 +1,6 @@
+/build/
+/target/
+/.swift-module-cache/
+.DS_Store
+*.xcuserstate
+xcuserdata/
