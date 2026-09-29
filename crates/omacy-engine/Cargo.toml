@@ -1,0 +1,28 @@
+[package]
+name = "omacy-engine"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+autotests = false
+
+[features]
+fixture-tools = []
+
+[lib]
+name = "omacy_engine"
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+libc = "0.2"
+image = { version = "0.25", default-features = false, features = ["png"] }
+resvg = "0.45"
+tiny-skia = "0.11"
+ttfx = { path = "../../vendor/ttfx" }
+
+[dev-dependencies]
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[[example]]
+name = "write_conversion_fixtures"
+required-features = ["fixture-tools"]
