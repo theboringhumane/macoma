@@ -1,4 +1,50 @@
-# Macarchy build qualification
+# Macoma control-plane qualification
+
+Local development release **0.3.0, build 6**, verified on 2026-10-11 from core commit `033a069cb3d6a94fcfade020bfff78ef246301a1`. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode.
+
+The control plane provides native SwiftUI navigation and a menu-bar menu for Appearance, Terminal, experimental Windows and Screensavers. Build 6 adds Command-T panes and the revised drag/resize handling. The user confirmed that Accessibility was allowed, dragging and resizing felt smooth, and Command-T created a new pane in a fresh Work session.
+
+## Built and installed identity
+
+The built app, built saver, embedded saver, installed app and installed saver all pass `codesign --verify --deep --strict`. Installed app content matches the built app; standalone, embedded and installed saver content also matches. The default MACOMA artwork is identical in all five bundles. The qualified bundles were copied into the main checkout without rebuilding.
+
+| Identity | Value |
+| --- | --- |
+| Source fingerprint | `c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890` |
+| App executable SHA-256 | `215639f83c30983420b2e864ac7409cf45ab0afb59b84955a225309fa6dc792e` |
+| Saver executable SHA-256 | `46d49588ac261b442cf7e3f5f7e7d7989ea9a47b7882efbef5691106909be99d` |
+
+The source fingerprint was recomputed from the source files, resources, engine crate, lock/pin/notice files and engine archive digest, and matches every packaged plist. Macoma retains its earlier bundle identifiers, executable name and installed saver location for compatibility. Full bundle hashes, code-directory hashes, plists and log digests are in [build 6 evidence](evidence/build-0.3.0-6.json).
+
+## Module and runtime evidence
+
+| Area | Evidence |
+| --- | --- |
+| Appearance | 21 checks pass: 23 canonical palettes, 96 pinned wallpaper records, rollback/recovery, external-change guards, pinned image verification, bounded decode and cache reuse. The tests made no live desktop writes. |
+| Terminal | Six qualification groups pass with Ghostty 1.3.1 and tmux 3.5a: both managed profiles, Command-T adaptive splits in wide/tall panes, three-pane Work geometry, top status bar, running-process preservation, apply/restore for future-pane environments, zsh startup forwarding, timeouts and output limits. |
+| Windows | 3,072 pure layout/identity/preparation assertions pass without Accessibility access or live window changes. The user separately confirmed smooth drag/resize on installed build 6. |
+| Packaged saver host | Software preview produced 145 callbacks and 41 distinct frame signatures. The full-size Metal host produced 365 callbacks with an active engine. Shared display synchronization was disabled. Stop/restart, resize while stopped, detach/reattach, simulated display sleep/wake and release were exercised. System settings were not changed. |
+| Interactive terminal | The user confirmed that Command-T creates a new pane in a fresh build-6 Work session. The earlier Work layout check showed one full-width upper pane and two lower panes. |
+| Wallpaper runtime | On one display, a pinned wallpaper applied through the UI and AppKit readback returned the managed JPEG. Restore remained available after navigation, and the user confirmed the original wallpaper returned. This earlier workflow check is separate from the final bundle identity checks. |
+| Gallery | Updated MACOMA previews were regenerated from the existing release engine: Aurora 129 frames / 8.52 s, Starfield 121 / 8.02 s, Circuit 136 / 9.02 s; all 672×384. Raw final grids and decoded final GIFs match the source artwork exactly: 88 glyph cells and zero colored pixels in expected empty cells. An Aurora animation sample and magnified final frame were visually inspected. |
+
+The captured window log covers **83.546 seconds** with two managed windows. It contains four layout passes taking 17.924, 4.627, 4.680 and 3.414 ms, each using one public CG snapshot. Across those passes it records two exact frame writes, six application-clamped writes and zero failed writes. Three completed native gesture gates recorded seven deferred reads and zero deferred writes; a fourth gate was active when capture ended. These are bounded layout-pass observations, not an input-latency or display-frame-rate benchmark.
+
+The GUI automation connection disconnected during the interactive sequence. User confirmations are recorded separately from automated tests. Build 5's earlier Enable, horizontal navigation and Pause/restore confirmation remains a basic historical workflow check; the build-6 smoothness confirmation supersedes the previously pending drag/resize note.
+
+The engine dependency and Rust effect code are unchanged from build 4. The existing release archive was reused for the build and gallery exports; unchanged test suites were not rerun solely for this evidence update. Earlier engine and automatic-idle results below retain their original build identity.
+
+## Limits
+
+Window management is experimental and qualified for a bounded basic workflow on one display and the current native Space. Overflow uses public window placement and can leave visible edges or be clamped by applications. Hidden or other-Space windows wait for restoration until visible. A process crash loses the in-memory geometry receipt. Stacking, repeated create/close cycles, native Space transitions, permission revocation and the full application compatibility matrix remain unqualified.
+
+Multi-display scrolling, native Space manipulation, compositor clipping, macOS 15 hardware, wallpaper multi-Space behavior and dynamic schedules remain unqualified. Physical multiple-display and sleep/wake checks and long-duration soak testing have not been completed for build 6. Its packaged-host test does not establish automatic inactivity-triggered activation; the historical automatic-idle result belongs to build 3. Builds are ad-hoc signed, without Developer ID signing or notarization.
+
+Existing Ghostty windows retain their launch profile. The current pane shortcuts require an applied revision-2 profile and a fresh managed window.
+
+---
+
+# Screensaver build 4 qualification
 
 Local development release **0.2.0, build 4**, verified on 2026-10-11. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode.
 

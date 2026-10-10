@@ -1,0 +1,524 @@
+{
+  "schema_version": 1,
+  "product": "Macoma",
+  "release": {
+    "version": "0.3.0",
+    "build": 6,
+    "qualification_date": "2026-10-11",
+    "timezone": "Asia/Kolkata"
+  },
+  "source_identity": {
+    "core_commit": "033a069cb3d6a94fcfade020bfff78ef246301a1",
+    "source_fingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890",
+    "recomputed_fingerprint_matches_all_bundles": true,
+    "fingerprint_inputs": [
+      "Sources/**",
+      "Resources/**",
+      "crates/omacy-engine/**",
+      "Cargo.lock",
+      "vendor/ttfx.PIN",
+      "NOTICE",
+      "SHA-256 digest of target/release/libomacy_engine.a"
+    ],
+    "fingerprint_algorithm": "SHA-256 of sorted relative file path, NUL and file bytes for each file, followed by the raw SHA-256 digest of the engine archive.",
+    "engine_archive_sha256": "e4d6b533b88d56a012d34553adbe19b87f3cc34e2f50c6a4b0f3758308a88791",
+    "engine_rebuilt_for_this_qualification": false,
+    "engine_scope": "The existing qualified release archive was reused. Prior engine-test and automatic-idle evidence retains its historical build identity.",
+    "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e",
+    "core_commit_source_inputs_match_checkout": true
+  },
+  "qualification_machine": {
+    "architecture": "arm64",
+    "macos_version": "26.5.2",
+    "macos_build": "25F84",
+    "xcode": "Xcode 26.6\nBuild version 17F113",
+    "swift": "Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\nTarget: arm64-apple-macosx26.0"
+  },
+  "build_configuration": {
+    "target": "arm64-apple-macosx15.0",
+    "swift_language_mode": 5,
+    "optimization": "-O",
+    "signing": "ad-hoc",
+    "notarized": false
+  },
+  "bundle_hash_algorithm": "SHA-256 of every sorted relative regular-file path, NUL and file bytes inside the bundle; file metadata is excluded.",
+  "bundles": {
+    "build_app": {
+      "plist": {
+        "CFBundleIdentifier": "dev.theboring.macarchy",
+        "CFBundleName": "Macoma",
+        "CFBundleDisplayName": "Macoma",
+        "CFBundleExecutable": "Macarchy",
+        "CFBundleShortVersionString": "0.3.0",
+        "CFBundleVersion": "6",
+        "LSMinimumSystemVersion": "15.0",
+        "NSPrincipalClass": "NSApplication",
+        "MacarchySourceFingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890"
+      },
+      "executable_sha256": "215639f83c30983420b2e864ac7409cf45ab0afb59b84955a225309fa6dc792e",
+      "executable_bytes": 12819936,
+      "bundle_content_sha256": "494bb113124db72b453237031133434f49031b0346ec91780bd1b4f742db194b",
+      "bundle_file_count": 38,
+      "bundle_file_bytes": 30415706,
+      "signature": {
+        "Identifier": "dev.theboring.macarchy",
+        "Format": "app bundle with Mach-O thin (arm64)",
+        "CodeDirectory v": "20400 size=25167 flags=0x2(adhoc) hashes=780+3 location=embedded",
+        "Hash type": "sha256 size=32",
+        "CDHash": "e08b2c0f7d8cdac3c04f54d239343957825f9b5c",
+        "Signature": "adhoc",
+        "TeamIdentifier": "not set",
+        "Sealed Resources version": "2 rules=13 files=35"
+      },
+      "strict_signature_verification_passed": true,
+      "location": "build/Macoma.app",
+      "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e"
+    },
+    "build_saver": {
+      "plist": {
+        "CFBundleIdentifier": "dev.theboring.macarchy.screensaver",
+        "CFBundleName": "Macoma",
+        "CFBundleDisplayName": "Macoma",
+        "CFBundleExecutable": "Macarchy",
+        "CFBundleShortVersionString": "0.3.0",
+        "CFBundleVersion": "6",
+        "LSMinimumSystemVersion": "15.0",
+        "NSPrincipalClass": "MacarchySaverView",
+        "MacarchySourceFingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890"
+      },
+      "executable_sha256": "46d49588ac261b442cf7e3f5f7e7d7989ea9a47b7882efbef5691106909be99d",
+      "executable_bytes": 10543280,
+      "bundle_content_sha256": "5acee4d22e80ecfcbc0428ea287a2a3e9ce68b8835ea6fd932a74750c6c6bc1e",
+      "bundle_file_count": 13,
+      "bundle_file_bytes": 14031176,
+      "signature": {
+        "Identifier": "dev.theboring.macarchy.screensaver",
+        "Format": "bundle with Mach-O thin (arm64)",
+        "CodeDirectory v": "20400 size=20763 flags=0x2(adhoc) hashes=642+3 location=embedded",
+        "Hash type": "sha256 size=32",
+        "CDHash": "9527d2f4340283d34a44e65613b077f39b7a1754",
+        "Signature": "adhoc",
+        "TeamIdentifier": "not set",
+        "Sealed Resources version": "2 rules=13 files=10"
+      },
+      "strict_signature_verification_passed": true,
+      "location": "build/Macoma.saver",
+      "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e"
+    },
+    "embedded_saver": {
+      "plist": {
+        "CFBundleIdentifier": "dev.theboring.macarchy.screensaver",
+        "CFBundleName": "Macoma",
+        "CFBundleDisplayName": "Macoma",
+        "CFBundleExecutable": "Macarchy",
+        "CFBundleShortVersionString": "0.3.0",
+        "CFBundleVersion": "6",
+        "LSMinimumSystemVersion": "15.0",
+        "NSPrincipalClass": "MacarchySaverView",
+        "MacarchySourceFingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890"
+      },
+      "executable_sha256": "46d49588ac261b442cf7e3f5f7e7d7989ea9a47b7882efbef5691106909be99d",
+      "executable_bytes": 10543280,
+      "bundle_content_sha256": "5acee4d22e80ecfcbc0428ea287a2a3e9ce68b8835ea6fd932a74750c6c6bc1e",
+      "bundle_file_count": 13,
+      "bundle_file_bytes": 14031176,
+      "signature": {
+        "Identifier": "dev.theboring.macarchy.screensaver",
+        "Format": "bundle with Mach-O thin (arm64)",
+        "CodeDirectory v": "20400 size=20763 flags=0x2(adhoc) hashes=642+3 location=embedded",
+        "Hash type": "sha256 size=32",
+        "CDHash": "9527d2f4340283d34a44e65613b077f39b7a1754",
+        "Signature": "adhoc",
+        "TeamIdentifier": "not set",
+        "Sealed Resources version": "2 rules=13 files=10"
+      },
+      "strict_signature_verification_passed": true,
+      "location": "build/Macoma.app/Contents/Resources/Macoma.saver",
+      "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e"
+    },
+    "installed_app": {
+      "plist": {
+        "CFBundleIdentifier": "dev.theboring.macarchy",
+        "CFBundleName": "Macoma",
+        "CFBundleDisplayName": "Macoma",
+        "CFBundleExecutable": "Macarchy",
+        "CFBundleShortVersionString": "0.3.0",
+        "CFBundleVersion": "6",
+        "LSMinimumSystemVersion": "15.0",
+        "NSPrincipalClass": "NSApplication",
+        "MacarchySourceFingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890"
+      },
+      "executable_sha256": "215639f83c30983420b2e864ac7409cf45ab0afb59b84955a225309fa6dc792e",
+      "executable_bytes": 12819936,
+      "bundle_content_sha256": "494bb113124db72b453237031133434f49031b0346ec91780bd1b4f742db194b",
+      "bundle_file_count": 38,
+      "bundle_file_bytes": 30415706,
+      "signature": {
+        "Identifier": "dev.theboring.macarchy",
+        "Format": "app bundle with Mach-O thin (arm64)",
+        "CodeDirectory v": "20400 size=25167 flags=0x2(adhoc) hashes=780+3 location=embedded",
+        "Hash type": "sha256 size=32",
+        "CDHash": "e08b2c0f7d8cdac3c04f54d239343957825f9b5c",
+        "Signature": "adhoc",
+        "TeamIdentifier": "not set",
+        "Sealed Resources version": "2 rules=13 files=35"
+      },
+      "strict_signature_verification_passed": true,
+      "location": "~/Applications/Macoma.app",
+      "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e"
+    },
+    "installed_saver": {
+      "plist": {
+        "CFBundleIdentifier": "dev.theboring.macarchy.screensaver",
+        "CFBundleName": "Macoma",
+        "CFBundleDisplayName": "Macoma",
+        "CFBundleExecutable": "Macarchy",
+        "CFBundleShortVersionString": "0.3.0",
+        "CFBundleVersion": "6",
+        "LSMinimumSystemVersion": "15.0",
+        "NSPrincipalClass": "MacarchySaverView",
+        "MacarchySourceFingerprint": "c6d93107d1cc9040e8899b0304b061c37e55e2bf74f595badcc89ff81c43f890"
+      },
+      "executable_sha256": "46d49588ac261b442cf7e3f5f7e7d7989ea9a47b7882efbef5691106909be99d",
+      "executable_bytes": 10543280,
+      "bundle_content_sha256": "5acee4d22e80ecfcbc0428ea287a2a3e9ce68b8835ea6fd932a74750c6c6bc1e",
+      "bundle_file_count": 13,
+      "bundle_file_bytes": 14031176,
+      "signature": {
+        "Identifier": "dev.theboring.macarchy.screensaver",
+        "Format": "bundle with Mach-O thin (arm64)",
+        "CodeDirectory v": "20400 size=20763 flags=0x2(adhoc) hashes=642+3 location=embedded",
+        "Hash type": "sha256 size=32",
+        "CDHash": "9527d2f4340283d34a44e65613b077f39b7a1754",
+        "Signature": "adhoc",
+        "TeamIdentifier": "not set",
+        "Sealed Resources version": "2 rules=13 files=10"
+      },
+      "strict_signature_verification_passed": true,
+      "location": "~/Library/Screen Savers/Macarchy.saver",
+      "default_artwork_sha256": "6f3877b9d41b5608756fa1441f4484d42843e8443e77f736ff5903dabdecaa1e"
+    }
+  },
+  "identity_checks": {
+    "installed_app_matches_built_app_executable_and_bundle_content": true,
+    "built_embedded_and_installed_saver_executables_and_bundle_contents_match": true,
+    "all_five_bundles_pass_codesign_verify_deep_strict": true,
+    "all_five_bundles_contain_current_default_artwork": true,
+    "legacy_bundle_identifiers_executable_names_and_installed_saver_location_preserved": true,
+    "main_checkout_copy": {
+      "reported_by": "Root qualification agent",
+      "method": "ditto",
+      "rebuilt": false,
+      "file_and_symlink_manifest_hashes_match": true,
+      "strict_deep_signatures_pass": true
+    }
+  },
+  "targeted_qualification": {
+    "method": "Existing recorded test runs were retained; unchanged tests were not rerun for documentation. Final bundle hashes, plists and signatures were checked separately.",
+    "appearance": {
+      "passed": true,
+      "check_count": 21,
+      "checks": [
+        "23 unique palettes have 16 valid ANSI colors",
+        "terminal selection and cursor colors are resolved",
+        "96 wallpaper records use bounded pinned source URLs",
+        "every wallpaper references a bundled theme",
+        "initialization performs no desktop write",
+        "apply targets all connected displays",
+        "reapplying the same wallpaper preserves the prior restore receipt",
+        "restore receipt survives controller recreation",
+        "restore preserves each original image and scaling options",
+        "partial failure rolls back successful and failing targets",
+        "failed rollback retains the unresolved display recovery record",
+        "unresolved rollback can be retried through Restore",
+        "restore preserves changes made outside Macarchy",
+        "restore preserves externally changed image options",
+        "disconnected display stops restore before any write",
+        "partial restore failure rolls back to the applied wallpapers",
+        "invalid images and mismatched pinned bytes are rejected",
+        "live source download matches the pinned Git blob",
+        "WebP thumbnail decoding is bounded",
+        "desktop JPEG preparation stays in the test sandbox",
+        "verified image is reused from cache"
+      ],
+      "live_desktop_writes": false
+    },
+    "terminal": {
+      "passed": true,
+      "named_group_count": 6,
+      "groups": [
+        "installed Ghostty validation, palette semantics, argument boundaries, atomic activation and restore",
+        "normal zsh startup order and custom ZDOTDIR preserved; managed enhancements loaded",
+        "isolated tmux three-pane geometry, top status, palette borders and idempotent reconnection",
+        "A -> B -> new pane and restore -> new pane use the correct profile; running processes preserved",
+        "Ghostty Cmd-T contexts, explicit tab shortcut, exact tmux auto-split in wide/tall panes and active command preservation",
+        "command timeouts and output limits are enforced"
+      ],
+      "ghostty_version": "1.3.1",
+      "tmux_version": "3.5a",
+      "test_scope": "Temporary profiles and a uniquely named throwaway tmux server; no normal terminal configs or real sessions changed."
+    },
+    "windows": {
+      "passed": true,
+      "assertion_count": 3072,
+      "scope": "Pure layout, window identity, preparation and movement assertions; no Accessibility access or live window changes in the test executable."
+    }
+  },
+  "native_saver_host": {
+    "report": "build/evidence/macoma-build6-host/saver-host-smoke.json",
+    "report_sha256": "05d02fb0259e50208fefff834da17b85d165028dc221a588d527d5e4dc63b236",
+    "result": {
+      "bundle": "build/Macoma.saver",
+      "lifecycle": [
+        "stop",
+        "restart",
+        "resizeWhileStopped",
+        "detach",
+        "reattach",
+        "displaySleep",
+        "displayWake",
+        "release"
+      ],
+      "metal": {
+        "animationRequested": true,
+        "backend": "metal",
+        "currentEffect": "random",
+        "diagnostic": "",
+        "engineActive": true,
+        "height": 1169,
+        "isPreview": false,
+        "metalFrameCount": 365,
+        "sharedDisplaySynchronization": false,
+        "softwareFrameCount": 0,
+        "softwareFrameSignature": 0,
+        "width": 1800
+      },
+      "preview": {
+        "animationRequested": true,
+        "backend": "software",
+        "currentEffect": "random",
+        "diagnostic": "",
+        "engineActive": true,
+        "height": 210,
+        "isPreview": true,
+        "metalFrameCount": 0,
+        "sharedDisplaySynchronization": false,
+        "softwareFrameCount": 145,
+        "softwareFrameSignature": 7452638095194464260,
+        "uniqueFrameSignatures": 41,
+        "width": 360
+      },
+      "principalClass": "MacarchySaverView",
+      "systemSettingsChanged": false,
+      "visibleWindow": true
+    },
+    "scope": "Controlled packaged-saver host; not automatic idle activation or a long-duration soak."
+  },
+  "bounded_window_runtime": {
+    "date": "2026-10-11",
+    "timezone": "Asia/Kolkata",
+    "local_start": "2026-10-11 01:55:54.972",
+    "local_end": "2026-10-11 01:57:18.518",
+    "captured_interval_seconds": 83.546,
+    "enable_requests": 5,
+    "accessibility_blocked_requests": 4,
+    "successful_enable_events": 1,
+    "frame_application_records": 4,
+    "candidate_counts": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "eligible_counts": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "successful_write_count": 2,
+    "clamped_write_count": 6,
+    "failed_write_count": 0,
+    "layout_total_ms": [
+      17.92425,
+      4.627208,
+      4.680292,
+      3.413833
+    ],
+    "layout_preparation_ms": [
+      1.069375,
+      1.312167,
+      1.17,
+      1.191375
+    ],
+    "cg_snapshot_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "native_gesture_gate_entries": 4,
+    "native_gesture_gate_exits": 3,
+    "completed_gates_deferred_reads": 7,
+    "completed_gates_deferred_writes": 0,
+    "last_captured_event": "native_gesture_gate",
+    "last_captured_gate_active": "true",
+    "display_count": 1,
+    "managed_window_count": 2,
+    "interpretation": [
+      "This is an 83.546-second captured excerpt, not a long-duration performance benchmark.",
+      "Four frame-application records contain two exact writes, six application-clamped writes and zero failed writes.",
+      "Each of the four layout passes used one public CG snapshot.",
+      "Three completed native gesture gates reported seven deferred reads and zero deferred writes in total.",
+      "A fourth gesture gate was active when the excerpt ended; its completion is not included.",
+      "Layout timings describe the instrumented layout pass, not display frame rate or full input latency."
+    ]
+  },
+  "manual_runtime_confirmation": {
+    "source": "User confirmation during the final build-6 qualification session; not automated frame-by-frame testing.",
+    "build": "0.3.0 (6)",
+    "accessibility_allowed": true,
+    "mouse_drag_and_resize_reported_smooth": true,
+    "fresh_work_session_command_t_created_new_pane": true,
+    "earlier_checks": [
+      "On build 5, the user confirmed Enable arranged windows, horizontal focus navigation worked and Pause restored positions.",
+      "In the control-plane UI, a pinned wallpaper applied on one display and the user confirmed the original wallpaper returned after Restore.",
+      "The managed Tokyo Night Work layout was visually confirmed, and tmux reported one full-width upper pane and two lower panes."
+    ],
+    "automation_limit": "The GUI automation connection disconnected during the interactive qualification sequence."
+  },
+  "gallery_previews": {
+    "renderer": "Existing tools/RenderPreviews.swift using the release C ABI and bundled Fairfax HD font.",
+    "engine_archive_reused_without_cargo_build": true,
+    "renderer_or_engine_code_changed": false,
+    "manifest": "docs/effects/manifest.json",
+    "manifest_sha256": "b4c583a97266fcfb103b0ca06c13cf3658cdd5416efd220f0f038c8d1baa5188",
+    "manifest_regenerated_metadata_unchanged": true,
+    "artifacts": [
+      {
+        "columns": 84,
+        "effect": "aurora",
+        "gif_duration_seconds": 8.52,
+        "gif_frames": 129,
+        "height": 384,
+        "rows": 24,
+        "sample_stride": 4,
+        "seed": 42,
+        "simulation_hz": 60,
+        "simulation_ticks": 511,
+        "source": "production C ABI cell grid and bundled Fairfax HD font",
+        "width": 672,
+        "path": "docs/effects/aurora.gif",
+        "bytes": 3747859,
+        "sha256": "17f458de843fe650c5df4effa97221648632c3a08b27554fd5692c885dde1399",
+        "final_grid_matches_default_artwork": true,
+        "final_raster_expected_glyph_cells": 88,
+        "final_raster_colored_pixels_in_glyph_cells": 11264,
+        "final_raster_colored_pixels_in_expected_empty_cells": 0
+      },
+      {
+        "columns": 84,
+        "effect": "starfield",
+        "gif_duration_seconds": 8.02,
+        "gif_frames": 121,
+        "height": 384,
+        "rows": 24,
+        "sample_stride": 4,
+        "seed": 42,
+        "simulation_hz": 60,
+        "simulation_ticks": 481,
+        "source": "production C ABI cell grid and bundled Fairfax HD font",
+        "width": 672,
+        "path": "docs/effects/starfield.gif",
+        "bytes": 342642,
+        "sha256": "df3f89fff6369b09d90c9ae0f3258a9ebf336d3bfb5643f0dab87be451e5b3b5",
+        "final_grid_matches_default_artwork": true,
+        "final_raster_expected_glyph_cells": 88,
+        "final_raster_colored_pixels_in_glyph_cells": 11264,
+        "final_raster_colored_pixels_in_expected_empty_cells": 0
+      },
+      {
+        "columns": 84,
+        "effect": "circuit",
+        "gif_duration_seconds": 9.02,
+        "gif_frames": 136,
+        "height": 384,
+        "rows": 24,
+        "sample_stride": 4,
+        "seed": 42,
+        "simulation_hz": 60,
+        "simulation_ticks": 541,
+        "source": "production C ABI cell grid and bundled Fairfax HD font",
+        "width": 672,
+        "path": "docs/effects/circuit.gif",
+        "bytes": 132031,
+        "sha256": "34bb5aa87d2fea3ff5d329357eafc17fc74d7e552626f32f84fbd9bc5fd4fc48",
+        "final_grid_matches_default_artwork": true,
+        "final_raster_expected_glyph_cells": 88,
+        "final_raster_colored_pixels_in_glyph_cells": 11264,
+        "final_raster_colored_pixels_in_expected_empty_cells": 0
+      }
+    ],
+    "visual_inspection": [
+      "Aurora mid-animation sample",
+      "Magnified final MACOMA artwork"
+    ],
+    "raster_verification": "The native final PNG and all three decoded final GIF rasters matched the source grid: 88 full 8x16 glyph cells, 11264 colored glyph pixels, zero colored pixels in expected empty cells."
+  },
+  "logs": [
+    {
+      "name": "macarchy-appearance-validation.log",
+      "bytes": 1244,
+      "sha256": "ec6cf294cb6665b28370e1c71463a3f3c5924efb75a62bf529a125cb6bd6aeac",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    },
+    {
+      "name": "macarchy-terminal-final.log",
+      "bytes": 664,
+      "sha256": "4eff60bd75cbae7afb07c1635461a93acb24bb5ddc84a6854b8c74f2975d2d90",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    },
+    {
+      "name": "macarchy-windows-performance-tests-20261011.log",
+      "bytes": 73,
+      "sha256": "47e36f890ef9b872e8f5f8c739b0c2ecc8997c4be9f7c60dfb8c6e79b3f9f8ed",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    },
+    {
+      "name": "macoma-window-runtime6.log",
+      "bytes": 5499,
+      "sha256": "8a45608fc888dff84596d74f895579d28697feb0cd68055bacef428d89916979",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    },
+    {
+      "name": "macoma-build6-final.log",
+      "bytes": 12253,
+      "sha256": "7346d46eae93908c4b60df86c0c85f8568ba63b27869d6b8edfe35975889af14",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    },
+    {
+      "name": "macoma-install6.log",
+      "bytes": 489,
+      "sha256": "eefc1befed6a3d09edb829635407aafb448622a9fa39fa712469fa257956b79d",
+      "retention": "Qualification-session temporary log; raw log is not committed."
+    }
+  ],
+  "limitations": [
+    "Window management is experimental and qualified only for a bounded basic workflow on one display and the current native Space.",
+    "Public window placement may leave overflow edges visible or be clamped by individual applications.",
+    "Stacking, repeated create/close cycles, native Space transitions, Accessibility revocation and the full application compatibility matrix remain unqualified.",
+    "Hidden and other-Space windows wait for restoration until visible; a process crash loses the in-memory geometry receipt.",
+    "Multi-display scrolling, native Space manipulation, compositor clipping and macOS 15 hardware remain unqualified.",
+    "Wallpaper multi-Space behavior and dynamic schedules remain unqualified.",
+    "The packaged saver host check does not establish automatic inactivity-triggered activation for build 6; historical automatic-idle evidence belongs to build 3.",
+    "Physical multiple-display and sleep/wake checks and long-duration soak testing have not been completed for build 6; the host harness exercises simulated lifecycle notifications.",
+    "Bundles are ad-hoc signed, without Developer ID signing or notarization.",
+    "Existing Ghostty windows retain their launch profile; current pane shortcuts require an applied revision-2 profile and a fresh managed window."
+  ],
+  "historical_evidence": [
+    "docs/evidence/build-0.2.0-4.json",
+    "docs/evidence/idle-activation-0.1.0-3.json",
+    "docs/evidence/build-0.1.0-3.json"
+  ],
+  "privacy": "Committed evidence contains no window titles, app-owner names or absolute user-specific filesystem paths; raw logs stay in qualification-session storage."
+}

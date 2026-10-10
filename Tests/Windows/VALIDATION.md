@@ -6,7 +6,9 @@ Run `sh Tests/Windows/run-model-tests.sh` for the pure model suite. It does not 
 
 The isolated Swift 5 module typecheck passed. The combined suite passed 3,072 assertions, including 600 sequences of structural edits, 15 identity cases, motion interpolation, exact final positions, a stalled fake writer, cancellation barriers, rapid-command coalescing, and five focused-target preparation cases. The test log is `/tmp/macarchy-windows-performance-tests-20261011.log`. Identity coverage includes identical same-app parked frames, ambiguous first matches, incomplete geometry, changed process IDs, missing/reused CG IDs, dead AX handles, and frame disagreement. The discovery harness ran with one connected display and no existing Accessibility permission: discovery was skipped, permission was not requested, and no window was moved. These checks do not qualify native movement or restoration.
 
-Native validation remains necessary before claiming desktop behavior works. Use disposable test-app windows and grant Accessibility to the actual signed Macarchy build through its Enable flow:
+On installed build 5, the user confirmed that Enable arranged windows, horizontal focus navigation worked, and Pause restored their original positions. After the mouse-contention changes in installed Macoma build 6, the user allowed Accessibility for the renamed app and confirmed smooth mouse drag/resize. Bounded runtime diagnostics recorded two managed windows, deferred reads during native gestures, no failed geometry writes and some application-clamped frames. These observations do not qualify the full compatibility matrix or establish a general frame-rate benchmark. See [build qualification](../../docs/build-qualification.md).
+
+The remaining native qualification uses disposable test-app windows and Accessibility granted to the actual signed Macoma build through its Enable flow:
 
 1. Confirm that launching the app and visiting Windows changes no frames and registers no shortcuts. Enable with one display; compare original/actual frames.
 2. Open four windows. Confirm new columns preserve existing widths, focus reveals distant columns, and overflow retains edge slivers.
