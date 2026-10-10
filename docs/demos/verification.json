@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-11",
+  "provenance": {
+    "creator": "Project owner",
+    "capture_tool": "Screen Studio",
+    "build": "Early development build; exact build identity not recorded",
+    "purpose": "Window-management demonstration; not load testing or release qualification",
+    "source_sha256": "5ddd00f0b04172817dc5cd5c1f657dbe6ef192fe246cce78e589048aeeeb6bea",
+    "source_handling": "Original recording and review contact sheets kept local, outside the repository; only sanitized media included"
+  },
+  "video": {
+    "path": "window-management.mp4",
+    "sha256": "0f71066abbc1e3c01913086591578852125d058856fbdd92b69b8aa58286b57b",
+    "bytes": 8059353,
+    "duration_seconds": 24.066667,
+    "width": 1660,
+    "height": 1080,
+    "frames": 722,
+    "fps": "30/1",
+    "codec": "h264",
+    "profile": "High",
+    "pixel_format": "yuv420p",
+    "video_streams": 1,
+    "audio_streams": 0,
+    "subtitle_streams": 0,
+    "data_streams": 0,
+    "faststart": true,
+    "moov_offset_bytes": 32,
+    "mdat_offset_bytes": 7058,
+    "metadata_review": "Only standard container and codec tags; no identifying source metadata observed",
+    "full_decode": {
+      "tool": "FFmpeg 8.0",
+      "exit_code": 0,
+      "errors": 0
+    }
+  },
+  "poster": {
+    "path": "window-management.jpg",
+    "sha256": "5ba64a8a4c6e07b68602064853d9f7c6541362dc01ece01930f88877ff91e56f",
+    "bytes": 257846,
+    "from_sanitized_video_seconds": 20.4,
+    "width": 1660,
+    "height": 1080,
+    "metadata_review": "No EXIF or application metadata; only the FFmpeg codec comment"
+  },
+  "privacy_edit": {
+    "method": "Frame-indexed masks over a heavily downsampled and blurred copy of the source picture",
+    "covered_content": [
+      "WhatsApp names and messages",
+      "Screen Studio live preview containing the recording",
+      "Private terminal content and title"
+    ],
+    "audio_removed": true,
+    "source_metadata_removed": true,
+    "timing_preserved": true,
+    "notes": "Full-frame masks cover sensitive zooms and transitions"
+  },
+  "visual_review": {
+    "contact_sheet_frames_reviewed": 722,
+    "first_frame": 0,
+    "last_frame": 721,
+    "full_resolution_sample_seconds": [
+      0,
+      0.9,
+      5.133,
+      5.9,
+      6.2,
+      6.6,
+      7.2,
+      20.4,
+      23.3
+    ],
+    "scope": "All final-output frames in contact sheets; full-resolution checks of terminal zooms, moving masks, the recording preview, and the poster",
+    "result": "No readable WhatsApp names or messages, or private terminal content, observed in the reviewed final output"
+  },
+  "reproduction": {
+    "tool": "FFmpeg 8.0",
+    "files": [
+      {
+        "path": "redact.py",
+        "sha256": "2944a469cce21035b825ada65721eb8250e52b6c9891b62da7231c07713c9a90",
+        "bytes": 3681
+      },
+      {
+        "path": "redaction.json",
+        "sha256": "2d4288c1336afa2588981721846855804cf4cf88817d08b6dd91d16248247377",
+        "bytes": 4732
+      }
+    ],
+    "note": "The script requires the exact private source hash. Encoder versions can change output bytes; newly rendered media requires review."
+  }
+}

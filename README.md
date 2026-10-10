@@ -6,6 +6,12 @@ Apple Silicon · macOS 15 or later · SwiftUI, AppKit, Metal and Rust
 
 On macOS 26, the app uses native Liquid Glass navigation, toolbars and controls. macOS 15 uses the standard native appearance. No new OS, disk partitioning, SIP changes or replacement window server is involved.
 
+## Window management demo
+
+[![Watch Macoma's scrolling window-management demo](docs/demos/window-management.jpg)](docs/demos/window-management.mp4)
+
+[Watch the 24-second demo](docs/demos/window-management.mp4). An early recording from before the Macoma rename: windows arrange into columns and move across the desktop. WhatsApp content and private terminal output are blurred; audio is removed. [Recording notes](docs/demos/README.md).
+
 ## Your desktop, in one place
 
 | Module | What it does |
