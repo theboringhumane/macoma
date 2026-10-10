@@ -29,6 +29,8 @@ For an existing checkout, run `git submodule update --init --recursive` before b
 
 `vendor/ttfx` is a submodule of [the native bridge fork](https://github.com/theboringhumane/ttfx/tree/macarchy-native-bridge), pinned to an exact commit based on upstream v0.3.2. That commit includes the existing Omacy bridge patch, so no manual patch step is needed. The upstream pin and patch provenance remain in [`vendor/ttfx.PIN`](vendor/ttfx.PIN) and [`vendor/patches/ttfx-omacy.patch`](vendor/patches/ttfx-omacy.patch). Use `git submodule update --init --recursive` to restore the recorded revision; `--remote` instead follows the fork branch and can select an unqualified revision.
 
+The native bridge retains the previously qualified v0.3.2 engine. Moving to a newer upstream revision requires reconciling the bridge patch and requalifying the native renderer and all effects.
+
 The build produces self-contained `build/Macarchy.app` and `build/Macarchy.saver` bundles. The app embeds the saver. Metal shaders are compiled by the system at runtime and cached in the process, so the optional Xcode Metal command-line toolchain is not required.
 
 Local builds are ad-hoc signed by default. Set `MACARCHY_SIGN_IDENTITY` to an installed identity to sign with that identity. This repository does not claim notarized public distribution. Both artifacts target arm64 and declare macOS 15 as the minimum; current runtime qualification is on macOS 26.5.2.
@@ -60,6 +62,8 @@ Tests/SaverHost/run.sh --bundle build/Macarchy.saver --output build/evidence/sav
 ```
 
 The engine suite exercises all 37 effects to completion through the native grid and actual main-thread C ABI, repeated random transitions, conversion, errors and ABI compatibility. The saver harness loads the packaged `NSPrincipalClass`, captures moving previews, and verifies stop, resize, detach, sleep/wake notifications and deallocation. Add `--visible` to the saver harness for its brief visible Metal host check.
+
+The [submodule qualification](docs/evidence/ttfx-submodule-2026-10-11.json) records a fresh checkout, public dependency initialization, all 65 Rust tests and 37 C ABI effect cycles, and a complete signed native build. The pinned dependency matches all 147 files of the previous engine snapshot.
 
 Automatic idle activation was also verified on macOS 26.5.2: after 60 seconds of inactivity, macOS launched the installed build 3 through its system screensaver host. See [engine qualification](docs/engine-qualification.md), [build qualification](docs/build-qualification.md), and the earlier [portability audit](docs/screensaver-audit.md) for evidence and limits. Physical external-monitor behavior remains unqualified.
 

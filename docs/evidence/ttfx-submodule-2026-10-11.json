@@ -1,0 +1,52 @@
+{
+  "qualification_date": "2026-10-11",
+  "parent_source_commit": "c759de6a1e99d053dd3bb99589b834a9148c801f",
+  "submodule": {
+    "path": "vendor/ttfx",
+    "url": "https://github.com/theboringhumane/ttfx.git",
+    "commit": "5e19b78b263e067492b07a044c789d63ece5176d",
+    "upstream_url": "https://github.com/omacom/ttfx.git",
+    "upstream_tag": "v0.3.2",
+    "upstream_commit": "7203e354498462064b7c0a89375051f65cf2ce99",
+    "gitlink_mode": "160000",
+    "shallow": true,
+    "clean": true
+  },
+  "source_comparison": {
+    "previous_engine_files_compared": 147,
+    "byte_or_executable_mode_mismatches": 0,
+    "native_bridge_patch_paths": 7,
+    "cargo_manifests_and_lock_unchanged": true,
+    "patch_sha256": "4dfca14a5ad8f8a92021b5d98911e7be80a049462919eb8fd07372aed872a33a"
+  },
+  "fresh_checkout": {
+    "public_https_initialization_passed": true,
+    "missing_submodule_build_skip_engine_exit": 1,
+    "missing_submodule_test_engine_exit": 1,
+    "missing_submodule_diagnostic_action": "git submodule update --init --recursive",
+    "missing_submodule_creates_no_build_or_target_output": true
+  },
+  "engine_qualification": {
+    "rust_tests_passed": 65,
+    "rust_tests_failed": 0,
+    "rust_test_duration_seconds": 35.45,
+    "virtual_catalog_cycles": 37,
+    "virtual_catalog_frames": 24205,
+    "random_cycles": 40,
+    "random_configuration_changes": 39,
+    "random_frames": 27872,
+    "production_c_abi_effects_completed": 37,
+    "production_c_abi_transitions": 37,
+    "production_c_abi_frames": 21496,
+    "c_and_cpp_contracts_passed": true
+  },
+  "native_build": {
+    "release_build_passed": true,
+    "app_and_saver_strict_signatures_verified": true,
+    "bundled_ttfx_license_and_notice_match": true,
+    "app_executable_sha256": "a72477b4d8f96fd28f952700d13eb32445101bf429e714b671bffd05f2948246",
+    "saver_executable_sha256": "4b47e83d51e5dd01b298ab4739c0554c34b141d39dea02a21e3bb34c1f42852a",
+    "signing": "ad-hoc local development"
+  },
+  "scope": "Submodule storage and fresh-checkout qualification. The engine contents are identical to the previously qualified vendor snapshot. This does not establish support for newer upstream engine revisions."
+}
