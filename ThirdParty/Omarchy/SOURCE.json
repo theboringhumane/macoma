@@ -1,0 +1,130 @@
+{
+  "repository": "https://github.com/omacom/omarchy",
+  "revision": "77bfaca408d2993018d928e72cf84561480e5188",
+  "branch": "quattro",
+  "revisionDate": "2026-10-10T13:50:15Z",
+  "license": "MIT for imported source and palette definitions; separate wallpaper artwork rights are not established by this notice.",
+  "files": [
+    {
+      "path": "themes/catppuccin/colors.toml",
+      "sha256": "a7eddcf3342ee0bee5df5ed7aad71c0e8c07ba5549bba7e040064fc5abc09eea",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/catppuccin/colors.toml"
+    },
+    {
+      "path": "themes/catppuccin-latte/colors.toml",
+      "sha256": "071e27fe9b0dd7ee0063c7a3a55288648dcc6ac05a6cf7702caeb51c9ca4398e",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/catppuccin-latte/colors.toml"
+    },
+    {
+      "path": "themes/ethereal/colors.toml",
+      "sha256": "411a9316828a0251d960e4a449ed7253251ac83f4589e6833a8db0458d5b733a",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/ethereal/colors.toml"
+    },
+    {
+      "path": "themes/everforest/colors.toml",
+      "sha256": "1adc95c8b6ee34d71106bacf23079f14667b82ec7d8f0b7a478ce3f8d57d1c09",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/everforest/colors.toml"
+    },
+    {
+      "path": "themes/flexoki-light/colors.toml",
+      "sha256": "bb3b5c43fc247f7e2f874c2b5b8e1c32f102245e55addb63bb0a2e7df9351ec7",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/flexoki-light/colors.toml"
+    },
+    {
+      "path": "themes/gruvbox/colors.toml",
+      "sha256": "dc30923fe0f19220ff8087f7830c3e7aa5760829b7f2d2f9a10cadc17e02abe0",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/gruvbox/colors.toml"
+    },
+    {
+      "path": "themes/hackerman/colors.toml",
+      "sha256": "cf921c499dc64223631fc3a9a1e7826465bf5cbad2c09526ca4d430b56233a3d",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/hackerman/colors.toml"
+    },
+    {
+      "path": "themes/kanagawa/colors.toml",
+      "sha256": "93c0ad7187196f39350b940b7e0f100305ab0c72aba19a621d696df715edb953",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/kanagawa/colors.toml"
+    },
+    {
+      "path": "themes/last-horizon/colors.toml",
+      "sha256": "2e03df6d3283409061b959851f0e5cb2bb4e6acc56628fd5debad37741a9751b",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/last-horizon/colors.toml"
+    },
+    {
+      "path": "themes/lumon/colors.toml",
+      "sha256": "bafd2347d54e8e44774ffb3243895482e9ed23fe45aba269200855f75cc2925c",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/lumon/colors.toml"
+    },
+    {
+      "path": "themes/lupine/colors.toml",
+      "sha256": "c3ffc08fe854a1488dc47eddca43dc43aaada2e89c2a747afb72fed4519120bd",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/lupine/colors.toml"
+    },
+    {
+      "path": "themes/matte-black/colors.toml",
+      "sha256": "71437ba25539371740722baa01de9ffde2dd2d5f35d448a7432ab51adb248c5a",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/matte-black/colors.toml"
+    },
+    {
+      "path": "themes/miasma/colors.toml",
+      "sha256": "ea38c4fb07b93938a4f3a1ec3970b99270a3ad0a4e648d1065185b1deff5acfa",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/miasma/colors.toml"
+    },
+    {
+      "path": "themes/nord/colors.toml",
+      "sha256": "62d1739a488db2a66b88f2f054579bdfd08c4ec771d2acf5659b9f9d976c57e2",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/nord/colors.toml"
+    },
+    {
+      "path": "themes/osaka-jade/colors.toml",
+      "sha256": "4e6b6f1c49e38dfad7a248a9a0e456f4bfb84752837bc0dcd79c7e88ae2aaa7c",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/osaka-jade/colors.toml"
+    },
+    {
+      "path": "themes/retro-82/colors.toml",
+      "sha256": "00a3ddc589250e02a331000f62b245d48dbc51211295289b94090a305ba8310b",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/retro-82/colors.toml"
+    },
+    {
+      "path": "themes/ristretto/colors.toml",
+      "sha256": "a256444c82c41ceb7203280414a6bd7540e7044d1e54943a3557733a50a287d4",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/ristretto/colors.toml"
+    },
+    {
+      "path": "themes/rose-pine/colors.toml",
+      "sha256": "c9d45f2434edc45520d9a05765b88d42d3053796b6531b4be3d6cc34d2839ae1",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/rose-pine/colors.toml"
+    },
+    {
+      "path": "themes/solitude/colors.toml",
+      "sha256": "7307db1d52dfc396f6d185c5447517b7a66cea20db9f39158eb56a2a1f2c3ef4",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/solitude/colors.toml"
+    },
+    {
+      "path": "themes/starship/colors.toml",
+      "sha256": "f977996b690c10396e3415b7985c612193e091c6360ecc1b352ffed3b7eb837a",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/starship/colors.toml"
+    },
+    {
+      "path": "themes/tokyo-night/colors.toml",
+      "sha256": "8b5f53ba35b9305aafa72776dd56ea2029faaf29015e2e42db5e19ef698a8e0e",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/tokyo-night/colors.toml"
+    },
+    {
+      "path": "themes/vantablack/colors.toml",
+      "sha256": "8a9272c46b4eeeb0376026e81586d636b6ff6e4916aadf5a0aa99980567efe33",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/vantablack/colors.toml"
+    },
+    {
+      "path": "themes/white/colors.toml",
+      "sha256": "fd1ed111b8fb919bee5f497416b810405927a7c3c1992571513956b1a53795b3",
+      "sourceURL": "https://github.com/omacom/omarchy/blob/77bfaca408d2993018d928e72cf84561480e5188/themes/white/colors.toml"
+    }
+  ],
+  "wallpapers": {
+    "catalogEntries": 96,
+    "sourceBytes": 56852174,
+    "bundledImageFiles": 0,
+    "provenance": "Catalog points to pinned upstream files. Images are downloaded only on request and are not redistributed in this app. No per-image artwork license was verified. Git blob hashes verify source bytes, not license rights. MP4 intro videos are not included."
+  }
+}

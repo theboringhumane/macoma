@@ -134,7 +134,7 @@ final class MacarchyModel: ObservableObject {
         do {
             try MacarchyInstallation.install()
             refreshInstallation()
-            message = "Installed. Select Macarchy in System Settings → Screen Saver."
+            message = "Installed. Select Macoma in System Settings → Screen Saver."
         } catch {
             errorMessage = "Could not install the screensaver: \(error.localizedDescription)"
         }

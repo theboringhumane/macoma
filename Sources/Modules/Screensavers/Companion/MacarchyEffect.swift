@@ -2,11 +2,11 @@ import Foundation
 
 struct MacarchyEffect: Identifiable {
     enum Origin: String, CaseIterable, Identifiable {
-        case macarchy = "Macarchy Originals"
+        case macarchy = "Macoma Originals"
         case ttfx = "ttfx"
 
         var id: String { rawValue }
-        var attribution: String { self == .macarchy ? "Macarchy Original" : "ttfx" }
+        var attribution: String { self == .macarchy ? "Macoma Original" : "ttfx" }
     }
 
     let id: String

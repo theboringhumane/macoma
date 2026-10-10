@@ -4,11 +4,11 @@ import AppKit
 /// button action; merely opening the sheet does not launch another app.
 @MainActor
 final class MacarchySaverConfiguration: NSWindowController {
-    private let statusLabel = NSTextField(wrappingLabelWithString: "Choose animations, artwork, and colors in the Macarchy app.")
+    private let statusLabel = NSTextField(wrappingLabelWithString: "Choose animations, artwork, and colors in the Macoma app.")
 
     init() {
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 420, height: 180), styleMask: [.titled], backing: .buffered, defer: false)
-        window.title = "Macarchy Screen Saver"
+        window.title = "Macoma Screen Saver"
         window.isReleasedWhenClosed = false
         super.init(window: window)
         let container = NSView(frame: NSRect(x: 0, y: 0, width: 420, height: 180))
@@ -18,7 +18,7 @@ final class MacarchySaverConfiguration: NSWindowController {
         statusLabel.textColor = .secondaryLabelColor
         statusLabel.font = .systemFont(ofSize: 13)
         statusLabel.maximumNumberOfLines = 3
-        let open = NSButton(title: "Open Macarchy", target: self, action: #selector(openCompanion))
+        let open = NSButton(title: "Open Macoma", target: self, action: #selector(openCompanion))
         open.bezelStyle = .rounded
         let done = NSButton(title: "Done", target: self, action: #selector(closeSheet))
         done.bezelStyle = .rounded
@@ -47,23 +47,23 @@ final class MacarchySaverConfiguration: NSWindowController {
         let bundle = Bundle(for: MacarchySaverView.self)
         let identifier = bundle.object(forInfoDictionaryKey: "MacarchyCompanionBundleIdentifier") as? String ?? "dev.theboring.macarchy"
         let candidates = [
+            FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Applications/Macoma.app"),
+            URL(fileURLWithPath: "/Applications/Macoma.app"),
             NSWorkspace.shared.urlForApplication(withBundleIdentifier: identifier),
-            URL(fileURLWithPath: "/Applications/Macarchy.app"),
-            FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Applications/Macarchy.app"),
-            bundle.bundleURL.deletingLastPathComponent().appendingPathComponent("Macarchy.app")
+            bundle.bundleURL.deletingLastPathComponent().appendingPathComponent("Macoma.app")
         ]
-        guard let app = candidates.compactMap({ $0 }).first(where: { FileManager.default.fileExists(atPath: $0.path) }) else {
-            statusLabel.stringValue = "Open Macarchy.app from your download, or move it into Applications first."
+        guard let app = candidates.compactMap({ $0 }).first(where: { Bundle(url: $0)?.bundleIdentifier == identifier }) else {
+            statusLabel.stringValue = "Open Macoma.app from your download, or move it into Applications first."
             return
         }
         let configuration = NSWorkspace.OpenConfiguration()
         configuration.activates = true
-        statusLabel.stringValue = "Opening Macarchy…"
+        statusLabel.stringValue = "Opening Macoma…"
         NSWorkspace.shared.openApplication(at: app, configuration: configuration) { [weak self] application, error in
             Task { @MainActor in
                 self?.statusLabel.stringValue = application != nil
-                    ? "Macarchy is open. Save your changes there, then close this sheet."
-                    : "Could not open Macarchy: \(error?.localizedDescription ?? "launch failed")."
+                    ? "Macoma is open. Save your changes there, then close this sheet."
+                    : "Could not open Macoma: \(error?.localizedDescription ?? "launch failed")."
             }
         }
     }

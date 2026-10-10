@@ -45,7 +45,25 @@ def install(source, destination, identifier):
         print(f"Previous version retained at {backup}")
 
 
+def owns_bundle(path, identifier):
+    try:
+        with (path / "Contents/Info.plist").open("rb") as stream:
+            return plistlib.load(stream).get("CFBundleIdentifier") == identifier
+    except (OSError, plistlib.InvalidFileException):
+        return False
+
+
 if __name__ == "__main__":
-    install(ROOT / "build/Macarchy.app", HOME_DIR / "Applications/Macarchy.app", "dev.theboring.macarchy")
-    install(ROOT / "build/Macarchy.saver", HOME_DIR / "Library/Screen Savers/Macarchy.saver", "dev.theboring.macarchy.screensaver")
-    print("Open Macarchy, then select it in System Settings → Screen Saver.")
+    app = HOME_DIR / "Applications/Macoma.app"
+    install(ROOT / "build/Macoma.app", app, "dev.theboring.macarchy")
+    legacy_saver = HOME_DIR / "Library/Screen Savers/Macarchy.saver"
+    saver = legacy_saver if owns_bundle(legacy_saver, "dev.theboring.macarchy.screensaver") else HOME_DIR / "Library/Screen Savers/Macoma.saver"
+    install(ROOT / "build/Macoma.saver", saver, "dev.theboring.macarchy.screensaver")
+    # Preserve the old app as a backup after both new bundles install successfully.
+    legacy_app = HOME_DIR / "Applications/Macarchy.app"
+    if owns_bundle(legacy_app, "dev.theboring.macarchy"):
+        BACKUPS.mkdir(parents=True, exist_ok=True)
+        backup = BACKUPS / (str(uuid.uuid4()) + "-Macarchy.app")
+        legacy_app.rename(backup)
+        print(f"Previous app name retained at {backup}")
+    print("Open Macoma, then select it in System Settings → Screen Saver.")

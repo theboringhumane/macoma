@@ -1,4 +1,4 @@
-Macarchy is an independent macOS project. It is not an official Omarchy or Omacy release.
+Macoma is an independent macOS project. It is not an official Omarchy or Omacy release.
 
 The shared native renderer, engine bridge and configuration code are adapted from
 Omacy, copyright (c) 2026 Peter Dedene, MIT License.
@@ -9,9 +9,9 @@ Some shared native code is copyright (c) 2026 Guillaume Louel, MIT License.
 See ThirdParty/Omacy/Aerial-LICENSE.
 
 The 37 upstream effects originate in TerminalTextEffects by ChrisBuilds and run through ttfx.
-Aurora, Starfield and Circuit are original Macarchy effects in crates/omacy-engine/src.
+Aurora, Starfield and Circuit are original Macoma effects in crates/omacy-engine/src.
 The upstream GIF previews in README.md are linked from the pinned ttfx source;
-the original-effect GIFs are generated from Macarchy native engine frames.
+the original-effect GIFs are generated from Macoma native engine frames.
 See vendor/ttfx/LICENSE, vendor/ttfx/NOTICE and vendor/ttfx.PIN.
 The submodule at vendor/ttfx pins a native bridge commit in
 https://github.com/theboringhumane/ttfx based on upstream ttfx v0.3.2.
@@ -22,4 +22,12 @@ The Fairfax HD font is copyright (c) 2017-2020 Kreative Software and is distribu
 under SIL Open Font License 1.1. See Resources/OFL.txt.
 
 Upstream artwork retained in assets/ is used only for test fixtures.
-The distributed Macarchy name, icon and default artwork are separate from Omacy branding.
+The distributed Macoma name, icon and default artwork are separate from Omacy branding.
+
+Omarchy palette definitions and adapted tmux configuration are from
+https://github.com/omacom/omarchy at 77bfaca408d2993018d928e72cf84561480e5188.
+Copyright and MIT terms are preserved in ThirdParty/Omarchy/LICENSE.
+Source metadata and palette checksums are in ThirdParty/Omarchy/SOURCE.json.
+Wallpaper image bytes are not included in this distribution; the catalog links
+to upstream images on demand. Per-image redistribution rights are not asserted.
+Ghostty and tmux are separately installed software, not bundled with Macoma.

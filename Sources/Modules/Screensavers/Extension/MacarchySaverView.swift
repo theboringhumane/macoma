@@ -2,7 +2,7 @@ import AppKit
 import QuartzCore
 import ScreenSaver
 
-/// The public ScreenSaver framework entry point for Macarchy.saver.
+/// The public ScreenSaver framework entry point for Macoma.saver.
 @MainActor
 @objc(MacarchySaverView)
 public final class MacarchySaverView: ScreenSaverView {

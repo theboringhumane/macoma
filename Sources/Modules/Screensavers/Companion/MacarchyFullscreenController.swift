@@ -10,7 +10,7 @@ final class MacarchyFullscreenController: NSObject, NSWindowDelegate {
         close()
         guard let screen = NSApp.keyWindow?.screen ?? NSScreen.main else { return }
         let window = MacarchyPreviewWindow(contentRect: screen.frame, styleMask: [.borderless], backing: .buffered, defer: false)
-        window.title = "Macarchy Preview"
+        window.title = "Macoma Preview"
         window.backgroundColor = .black
         window.isReleasedWhenClosed = false
         window.level = .floating

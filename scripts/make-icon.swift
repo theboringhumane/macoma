@@ -1,7 +1,7 @@
 import AppKit
 
 let root = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
-let iconset = root.appendingPathComponent("build/Macarchy.iconset")
+let iconset = root.appendingPathComponent("build/Macoma.iconset")
 try FileManager.default.createDirectory(at: iconset, withIntermediateDirectories: true)
 let sizes = [(16, "16x16"), (32, "16x16@2x"), (32, "32x32"), (64, "32x32@2x"),
              (128, "128x128"), (256, "128x128@2x"), (256, "256x256"),

@@ -1,79 +1,17 @@
 import SwiftUI
 
-struct MacarchyWorkspaceView: View {
-    @ObservedObject var model: MacarchyModel
-    @State private var showingInspector = true
-
-    var body: some View {
-        NavigationSplitView {
-            MacarchyEffectSidebar(model: model)
-                .navigationSplitViewColumnWidth(min: 190, ideal: 220, max: 280)
-        } detail: {
-            MacarchyEffectDetail(model: model)
-                .navigationTitle("Macarchy")
-                .navigationSubtitle(model.currentEffect.name)
-                .toolbar { workspaceToolbar }
-        }
-        .navigationSplitViewStyle(.balanced)
-        .inspector(isPresented: $showingInspector) {
-            MacarchyInspector(model: model)
-                .inspectorColumnWidth(min: 250, ideal: 270, max: 320)
-        }
-        .sheet(isPresented: $model.showingArtwork) { MacarchyArtworkEditor(model: model) }
-        .alert("Macarchy", isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
-            Button("OK", role: .cancel) { model.errorMessage = nil }
-        } message: { Text(model.errorMessage ?? "") }
-        .onChange(of: model.selectedEffect) { _, _ in model.previewFailure = false }
-    }
-
-    @ToolbarContentBuilder
-    private var workspaceToolbar: some ToolbarContent {
-        ToolbarItemGroup(placement: .primaryAction) {
-            Button { model.showingArtwork = true } label: {
-                Label("Edit Artwork", systemImage: "square.and.pencil")
-            }
-            .help("Edit artwork")
-        }
-        ToolbarItem(placement: .confirmationAction) {
-            MacarchyApplyButton(model: model)
-        }
-        ToolbarItem {
-            Button { showingInspector.toggle() } label: {
-                Label("Inspector", systemImage: "sidebar.right")
-            }
-            .help(showingInspector ? "Hide inspector" : "Show inspector")
-        }
-    }
-}
-
-private struct MacarchyEffectSidebar: View {
+struct MacarchyScreensaverEffectSections: View {
     @ObservedObject var model: MacarchyModel
 
-    private var selection: Binding<String?> {
-        Binding(get: { model.selectedEffect }, set: { if let value = $0 { model.selectedEffect = value } })
-    }
-
     var body: some View {
-        List(selection: selection) {
-            ForEach(MacarchyEffect.Origin.allCases) { origin in
-                let effects = model.filteredEffects.filter { $0.origin == origin }
-                if !effects.isEmpty {
-                    Section(origin.rawValue) {
-                        ForEach(effects) { effect in
-                            effectRow(effect)
-                        }
-                    }
+        ForEach(MacarchyEffect.Origin.allCases) { origin in
+            let effects = model.filteredEffects.filter { $0.origin == origin }
+            if !effects.isEmpty {
+                Section(origin.rawValue) {
+                    ForEach(effects) { effect in effectRow(effect) }
                 }
             }
         }
-        .listStyle(.sidebar)
-        .searchable(text: $model.search, placement: .sidebar, prompt: "Search effects")
-        .overlay {
-            if model.filteredEffects.isEmpty {
-                ContentUnavailableView.search(text: model.search)
-            }
-        }
-        .navigationTitle("Effects")
     }
 
     private func effectRow(_ effect: MacarchyEffect) -> some View {
@@ -94,7 +32,7 @@ private struct MacarchyEffectSidebar: View {
     }
 }
 
-private struct MacarchyEffectDetail: View {
+struct MacarchyEffectDetail: View {
     @ObservedObject var model: MacarchyModel
 
     var body: some View {
@@ -141,7 +79,7 @@ private struct MacarchyEffectDetail: View {
     }
 }
 
-private struct MacarchyApplyButton: View {
+struct MacarchyApplyButton: View {
     @ObservedObject var model: MacarchyModel
 
     var body: some View {
@@ -193,7 +131,7 @@ private struct MacarchyPreviewTransport: View {
     }
 }
 
-private struct MacarchyInspector: View {
+struct MacarchyInspector: View {
     @ObservedObject var model: MacarchyModel
 
     var body: some View {
@@ -251,7 +189,7 @@ private struct MacarchyInspector: View {
     }
 }
 
-private struct MacarchyArtworkEditor: View {
+struct MacarchyArtworkEditor: View {
     @ObservedObject var model: MacarchyModel
     @Environment(\.dismiss) private var dismiss
 

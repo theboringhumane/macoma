@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/omacom/omarchy",
+  "revision": "77bfaca408d2993018d928e72cf84561480e5188",
+  "branch": "quattro",
+  "revisionDate": "2026-10-10T13:50:15Z",
+  "license": "MIT for imported source and palette definitions; separate wallpaper artwork rights are not established by this notice.",
+  "wallpapers": {
+    "catalogEntries": 96,
+    "sourceBytes": 56852174,
+    "bundledImageFiles": 0,
+    "provenance": "Catalog points to pinned upstream files. Images are downloaded only on request and are not redistributed in this app. No per-image artwork license was verified. Git blob hashes verify source bytes, not license rights. MP4 intro videos are not included."
+  }
+}
