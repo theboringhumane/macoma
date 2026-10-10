@@ -1,0 +1,202 @@
+{
+  "app_version": "0.2.0",
+  "build": "4",
+  "verified_at": "2026-10-10T19:13:38.741933+00:00",
+  "os": "26.5.2",
+  "architecture": "arm64",
+  "signing": "ad-hoc local development",
+  "artifact_verification": {
+    "built_app": {
+      "path": "build/Macarchy.app",
+      "version": "0.2.0",
+      "build": "4",
+      "source_fingerprint": "617eea2fb966c40d711b7888645a95693f381c544f39edc514d3e04bb2e8a59b",
+      "sha256": "c6738b8d3c8a2aabba3025cd2ba98131c0841811ea9d0d1c5e19480bf2361257",
+      "signature_verified": true,
+      "license_resources_verified": true
+    },
+    "installed_app": {
+      "path": "~/Applications/Macarchy.app",
+      "version": "0.2.0",
+      "build": "4",
+      "source_fingerprint": "617eea2fb966c40d711b7888645a95693f381c544f39edc514d3e04bb2e8a59b",
+      "sha256": "c6738b8d3c8a2aabba3025cd2ba98131c0841811ea9d0d1c5e19480bf2361257",
+      "signature_verified": true,
+      "license_resources_verified": true
+    },
+    "built_saver": {
+      "path": "build/Macarchy.saver",
+      "version": "0.2.0",
+      "build": "4",
+      "source_fingerprint": "617eea2fb966c40d711b7888645a95693f381c544f39edc514d3e04bb2e8a59b",
+      "sha256": "ecf65fd71755bd785fd5cfb1ad7778fe7cf09bb347dacab90ff2cd9e8402325b",
+      "signature_verified": true,
+      "license_resources_verified": true
+    },
+    "installed_saver": {
+      "path": "~/Library/Screen Savers/Macarchy.saver",
+      "version": "0.2.0",
+      "build": "4",
+      "source_fingerprint": "617eea2fb966c40d711b7888645a95693f381c544f39edc514d3e04bb2e8a59b",
+      "sha256": "ecf65fd71755bd785fd5cfb1ad7778fe7cf09bb347dacab90ff2cd9e8402325b",
+      "signature_verified": true,
+      "license_resources_verified": true
+    },
+    "embedded_saver": {
+      "path": "build/Macarchy.app/Contents/Resources/Macarchy.saver",
+      "version": "0.2.0",
+      "build": "4",
+      "source_fingerprint": "617eea2fb966c40d711b7888645a95693f381c544f39edc514d3e04bb2e8a59b",
+      "sha256": "ecf65fd71755bd785fd5cfb1ad7778fe7cf09bb347dacab90ff2cd9e8402325b",
+      "signature_verified": true,
+      "license_resources_verified": true
+    }
+  },
+  "engine_source_sha256": "0835fa372745bfc1f22a124fcd313e551f1f555095ba87d1e66ed4d728f32972",
+  "ttfx_submodule_commit": "5e19b78b263e067492b07a044c789d63ece5176d",
+  "engine": {
+    "rust_tests_passed": 74,
+    "rust_tests_failed": 0,
+    "rust_catalog_effects": 40,
+    "rust_catalog_frames": 25738,
+    "rust_random_cycles": 40,
+    "rust_random_transitions": 39,
+    "rust_random_frames": 28010,
+    "upstream_ansi_parity_effects": 37,
+    "original_acceptance_tests": 9,
+    "c_abi_effects": 40,
+    "c_abi_transitions": 40,
+    "c_abi_frames": 23446,
+    "c_abi_extra_pool_cycles": 8,
+    "c_abi_extra_pool_transitions": 7,
+    "c_and_cpp_compatibility_passed": true
+  },
+  "native_saver_host": {
+    "bundle": "build/Macarchy.saver",
+    "lifecycle": [
+      "stop",
+      "restart",
+      "resizeWhileStopped",
+      "detach",
+      "reattach",
+      "displaySleep",
+      "displayWake",
+      "release"
+    ],
+    "metal": {
+      "animationRequested": true,
+      "backend": "metal",
+      "currentEffect": "random",
+      "diagnostic": "",
+      "engineActive": true,
+      "height": 1169,
+      "isPreview": false,
+      "metalFrameCount": 368,
+      "sharedDisplaySynchronization": false,
+      "softwareFrameCount": 0,
+      "softwareFrameSignature": 0,
+      "width": 1800
+    },
+    "preview": {
+      "animationRequested": true,
+      "backend": "software",
+      "currentEffect": "random",
+      "diagnostic": "",
+      "engineActive": true,
+      "height": 210,
+      "isPreview": true,
+      "metalFrameCount": 0,
+      "sharedDisplaySynchronization": false,
+      "softwareFrameCount": 145,
+      "softwareFrameSignature": 8459025766647402748,
+      "uniqueFrameSignatures": 39,
+      "width": 360
+    },
+    "principalClass": "MacarchySaverView",
+    "systemSettingsChanged": false,
+    "visibleWindow": true
+  },
+  "original_previews": [
+    {
+      "columns": 84,
+      "effect": "aurora",
+      "gif_duration_seconds": 8.52,
+      "gif_frames": 129,
+      "height": 384,
+      "rows": 24,
+      "sample_stride": 4,
+      "seed": 42,
+      "simulation_hz": 60,
+      "simulation_ticks": 511,
+      "source": "production C ABI cell grid and bundled Fairfax HD font",
+      "width": 672
+    },
+    {
+      "columns": 84,
+      "effect": "starfield",
+      "gif_duration_seconds": 8.02,
+      "gif_frames": 121,
+      "height": 384,
+      "rows": 24,
+      "sample_stride": 4,
+      "seed": 42,
+      "simulation_hz": 60,
+      "simulation_ticks": 481,
+      "source": "production C ABI cell grid and bundled Fairfax HD font",
+      "width": 672
+    },
+    {
+      "columns": 84,
+      "effect": "circuit",
+      "gif_duration_seconds": 9.02,
+      "gif_frames": 136,
+      "height": 384,
+      "rows": 24,
+      "sample_stride": 4,
+      "seed": 42,
+      "simulation_hz": 60,
+      "simulation_ticks": 541,
+      "source": "production C ABI cell grid and bundled Fairfax HD font",
+      "width": 672
+    }
+  ],
+  "preview_verification": {
+    "sampled_native_frames_visually_reviewed": true,
+    "final_png_cell_centers_match_bundled_artwork": true,
+    "final_native_glyphs_match_bundled_artwork": true,
+    "final_artwork_glyphs": 111,
+    "all_gif_frame_counts_and_durations_verified": true
+  },
+  "archive": {
+    "path": "build/Macarchy-0.2.0-macos-arm64.zip",
+    "sha256": "18aff6dd5ea3e3671ae698e2c8ffa375807265150635208c4d82553dac0be8e5",
+    "bytes": 11763228,
+    "executable_hashes_match_bundles": true
+  },
+  "ui_observed": [
+    "Native Macarchy Originals sidebar section before ttfx",
+    "All 40 effects available; original effects include individual attribution",
+    "Installed Starfield and Circuit previews rendered animated cells and current custom artwork",
+    "Existing 37-effect saved pool preserved on first launch; user subsequently selected and saved all 40 effects"
+  ],
+  "system_settings_changed_by_agent": false,
+  "prior_automatic_idle_evidence": {
+    "tested_build": "0.1.0 build 3",
+    "path": "idle-activation-0.1.0-3.json",
+    "rerun_for_build_4": false
+  },
+  "not_qualified": [
+    "Automatic idle activation with build 4",
+    "Physical multiple displays",
+    "Physical sleep/wake",
+    "macOS 15 hardware",
+    "Public notarized distribution"
+  ],
+  "implementation_commit": "82b3fe24bfd87013697f2a6aae23826700d052b3",
+  "stale_system_host_refresh": {
+    "previous_build": "0.1.0 build 3",
+    "previous_module_verified_in_installer_backup": true,
+    "stale_host_stopped": true,
+    "replacement_idle_launch_not_claimed": true
+  }
+}

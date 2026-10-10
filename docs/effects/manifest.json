@@ -1,0 +1,44 @@
+[
+  {
+    "columns" : 84,
+    "effect" : "aurora",
+    "gif_duration_seconds" : 8.5199999999999996,
+    "gif_frames" : 129,
+    "height" : 384,
+    "rows" : 24,
+    "sample_stride" : 4,
+    "seed" : 42,
+    "simulation_hz" : 60,
+    "simulation_ticks" : 511,
+    "source" : "production C ABI cell grid and bundled Fairfax HD font",
+    "width" : 672
+  },
+  {
+    "columns" : 84,
+    "effect" : "starfield",
+    "gif_duration_seconds" : 8.0199999999999996,
+    "gif_frames" : 121,
+    "height" : 384,
+    "rows" : 24,
+    "sample_stride" : 4,
+    "seed" : 42,
+    "simulation_hz" : 60,
+    "simulation_ticks" : 481,
+    "source" : "production C ABI cell grid and bundled Fairfax HD font",
+    "width" : 672
+  },
+  {
+    "columns" : 84,
+    "effect" : "circuit",
+    "gif_duration_seconds" : 9.0199999999999996,
+    "gif_frames" : 136,
+    "height" : 384,
+    "rows" : 24,
+    "sample_stride" : 4,
+    "seed" : 42,
+    "simulation_hz" : 60,
+    "simulation_ticks" : 541,
+    "source" : "production C ABI cell grid and bundled Fairfax HD font",
+    "width" : 672
+  }
+]

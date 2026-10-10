@@ -1,30 +1,34 @@
 # Macarchy build qualification
 
-Local development release 0.1.0, build 3. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode.
+Local development release **0.2.0, build 4**, verified on 2026-10-11. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode.
 
-The companion and native `.saver` are built and installed for the current user. The app exposes all 37 effects, rotation selection, custom artwork, PNG/SVG conversion, appearance settings, live preview and a system screensaver installer. On macOS 26, the interface uses native SwiftUI Liquid Glass controls, toolbar, sidebar and inspector rather than a custom dashboard shell.
+The built and installed companion and native `.saver` include 40 effects: all 37 ttfx effects plus Aurora, Starfield and Circuit. The app separates Macarchy Originals from ttfx in its native sidebar, with descriptions and attribution. The macOS 26 Liquid Glass interface, artwork editor and saved configuration remain available.
 
-## Checks completed
+## Current checks
 
 | Area | Evidence |
 | --- | --- |
-| Rust engine and native bridge | 65 Rust tests passed. All 37 effects ran to completion through the production C ABI on the macOS main thread, followed by 37 content/effect/geometry transitions. |
-| Repeated rotation | 40 seeded random cycles with 39 artwork/pool/geometry changes passed. |
-| Input and ABI | PNG/SVG conversion, input budgets, error paths, wrong-thread rejection, C/C++ layout and prior declaration compatibility passed. |
-| Packaged saver loading | The compiled `.saver` loads through `NSBundle` and `NSPrincipalClass = MacarchySaverView`. |
-| Native preview | Real engine frames rendered into AppKit snapshots; distinct frames verified and a resulting image visually inspected. |
-| Metal host | A visible full-display test presented 367 callbacks in the build 2 check, with engine active and shared display synchronization disabled. |
-| Lifecycle | Stop, restart, resize while stopped, detach, reattach, simulated display sleep/wake and deallocation passed. No rendering continued after explicit stop. |
-| macOS integration | System Settings showed `SelectedScreenSaver: Macarchy` in Custom mode. Apple's `legacyScreenSaver` loaded the installed build 2 executable; its mapped inode matched the installed bundle. |
-| Automatic idle activation | On 2026-10-10 at 23:55:20 IST, `loginwindow` measured 60 seconds of inactivity and entered `kLWLockFromScreenSaverIdleLaunch (3)`. WallpaperAgent then initialized Macarchy, and its native host started animation with the installed build 3 executable. The mapped file identity and SHA-256 matched the current artifact. This was an automatic idle launch, with no preview command. The user confirmed that animated artwork appeared. No Macarchy errors or display-barrier warnings were logged during the following 94.6 seconds of observation. |
-| Native interface | Installed build 3 was visually inspected with the standard sidebar, title bar, inspector and artwork sheet. The live preview and full-screen window were observed. Glass APIs are gated to macOS 26, with native macOS 15 fallbacks. |
-| Packaging | Build 3 app, saver, embedded saver and installed bundles pass `codesign --verify --deep --strict`. Installed and ZIP executable hashes match the current build; bundle source fingerprints match the current `Sources/` tree. The app embeds the saver, font, artwork, shader source and license notices. |
+| Engine and C ABI | 74 Rust tests passed. All 40 effects completed through the native cell grid and actual process-main-thread C ABI, followed by 40 configuration transitions. The unchanged 37-effect ANSI parity matrix passed. |
+| Original effects | Nine acceptance tests cover seeded variation and repeatability, exact final artwork, Unicode, narrow canvases, finite completion and mixed pools. The native C harness also completed eight original/upstream pool cycles. |
+| Native saver loading | The packaged `.saver` loads through `NSBundle` with `NSPrincipalClass = MacarchySaverView`. |
+| AppKit preview | 145 software callbacks produced 39 distinct frame signatures in the packaged host check. |
+| Metal host | The visible full-display host check presented 368 callbacks with an active engine and shared display synchronization disabled. |
+| Lifecycle | Stop, restart, resize while stopped, detach, reattach, simulated display sleep/wake and deallocation passed. Callbacks stopped after explicit stop. |
+| Companion interface | Installed build 4 exposed all 40 effects and the Originals section. Starfield and Circuit rendered live motion and the existing custom artwork. The original saved pool was preserved on first launch; the user subsequently included and saved all 40 effects. |
+| GIF previews | The three original GIFs were exported from the production release C ABI with Fairfax HD. Frame counts, durations and final artwork pixels were checked. All 37 pinned upstream GIF URLs returned HTTP 200 with `image/gif`. |
+| Packaging and installation | Built app, saver, embedded saver and installed bundles pass strict code-signature verification. Installed and ZIP executable hashes match the build. Source fingerprints and packaged license files were verified. |
 
-See [engine qualification](engine-qualification.md), [current build 3 evidence](evidence/build-0.1.0-3.json), [automatic idle evidence](evidence/idle-activation-0.1.0-3.json), and [build 2 host evidence](evidence/build-0.1.0-2.json). Native host snapshots and detailed reports are retained under `build/evidence/`; the engine runner retains its logs under `target/qualification/`.
+See [build 4 evidence](evidence/build-0.2.0-4.json), [engine qualification](engine-qualification.md) and [preview manifest](effects/manifest.json). Detailed engine logs remain under `target/qualification/`; native host reports and snapshots remain under `build/evidence/`.
 
-Build 3 changes the companion interface. The engine and saver implementation are unchanged from build 2. The scripted native saver lifecycle checks were collected on build 2 and were not rerun for this interface update. Build 3 has its own packaging, installed-identity, visual interface and actual automatic idle-launch checks.
+The host harness exercises the packaged saver in a controlled process. It does not establish automatic inactivity-triggered activation for build 4. No system password, display-sleep or screensaver idle policies were changed.
 
-Before the idle check, macOS still had a host mapping an earlier build from the installer's backup directory. That exact stale host was terminated after verifying its mapped module; WallpaperAgent created a replacement using build 3. Settings previews use a separate host, so reopening Settings alone did not refresh the active wallpaper host. Neither the idle interval nor the display-sleep or password settings were changed during this validation. Computer-use automation was paused during the idle wait because its display-sleep assertion otherwise suppresses automatic screensaver launch.
+## Earlier system-host evidence
+
+Build 3 passed an actual automatic idle launch on 2026-10-10 at 23:55:20 IST. `loginwindow` measured 60 seconds of inactivity and entered `kLWLockFromScreenSaverIdleLaunch (3)`. WallpaperAgent initialized Macarchy and Apple's host started the installed build 3 executable. The mapped file identity and SHA-256 matched that artifact; the user confirmed that animated artwork appeared. No Macarchy errors or display-barrier warnings appeared in the following 94.6 seconds.
+
+This remains historical build 3 evidence: [automatic idle check](evidence/idle-activation-0.1.0-3.json), [build 3 packaging and interface](evidence/build-0.1.0-3.json), and [build 2 native-host checks](evidence/build-0.1.0-2.json). It has not been relabeled as build 4 qualification.
+
+Before that check, an Apple host still mapped an earlier executable from the installer's backup directory. The exact stale host was terminated after verifying its mapped module, and WallpaperAgent created a replacement. Settings previews use a separate host, so reopening Settings alone did not refresh the active wallpaper host. Computer-use automation was paused during the idle wait because its display-sleep assertion suppresses automatic launch.
 
 ## Fix found in the real macOS host
 
@@ -36,9 +40,9 @@ Other integration fixes include bundle-relative resource loading inside Apple's 
 
 ## Scope of remaining qualification
 
-- Automatic inactivity-triggered activation passed on the qualification machine with a 1-minute screensaver interval and 10-minute display-sleep interval. This bounded run does not establish long-duration reliability.
+- Automatic inactivity-triggered activation has not been repeated for build 4. The earlier one-minute idle check passed on build 3; neither run establishes long-duration reliability.
 - Physical multiple-monitor and sleep/wake testing remain open; simulated lifecycle notifications passed.
 - macOS 15 hardware has not been tested.
-- The app is a local ad-hoc signed build. Public Developer ID signing and notarization have not been performed.
+- The app is an ad-hoc signed local build. Developer ID signing and notarization have not been performed.
 
-The `.saver` uses Apple's documented ScreenSaver framework, rather than an extension with private ScreenSaver class declarations. macOS owns authentication and locking.
+The `.saver` uses Apple's documented ScreenSaver framework. macOS owns authentication and locking.

@@ -8,7 +8,10 @@ See ThirdParty/Omacy/LICENSE. Internal Omacy symbol names preserve code provenan
 Some shared native code is copyright (c) 2026 Guillaume Louel, MIT License.
 See ThirdParty/Omacy/Aerial-LICENSE.
 
-The effects originate in TerminalTextEffects by ChrisBuilds and run through ttfx.
+The 37 upstream effects originate in TerminalTextEffects by ChrisBuilds and run through ttfx.
+Aurora, Starfield and Circuit are original Macarchy effects in crates/omacy-engine/src.
+The upstream GIF previews in README.md are linked from the pinned ttfx source;
+the original-effect GIFs are generated from Macarchy native engine frames.
 See vendor/ttfx/LICENSE, vendor/ttfx/NOTICE and vendor/ttfx.PIN.
 The submodule at vendor/ttfx pins a native bridge commit in
 https://github.com/theboringhumane/ttfx based on upstream ttfx v0.3.2.

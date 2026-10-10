@@ -1,10 +1,48 @@
 # Macarchy
 
-A native macOS companion that brings Omarchy's terminal-art screensavers to the Mac. The first release includes all 37 effects, a live preview, custom artwork, and a real `ScreenSaverView` system screensaver.
+A native macOS companion that brings Omarchy's terminal-art screensavers to the Mac. Includes 40 effects: 3 Macarchy originals and all 37 ttfx effects, a live preview, custom artwork, and a real `ScreenSaverView` system screensaver.
 
 Apple Silicon · macOS 15 or later · SwiftUI, Metal and Rust
 
 On macOS 26, the app follows native Liquid Glass styling with a system sidebar, toolbar and inspector. Earlier supported macOS versions use standard native controls. The app follows the system appearance.
+
+## Screensavers
+
+### Macarchy originals
+
+Three original effects built for Macarchy. Each cycle uses a seed to vary its motion while keeping your artwork readable at the end. These previews come from the native engine with the bundled Fairfax HD font.
+
+| Aurora | Starfield |
+|:---:|:---:|
+| <img src="docs/effects/aurora.gif" width="400" alt="Aurora: flowing colored light curtains reveal the Macarchy wordmark"><br>Flowing light curtains shimmer across the canvas and reveal your artwork. | <img src="docs/effects/starfield.gif" width="400" alt="Starfield: stars travel outward before the Macarchy wordmark settles into view"><br>Stars travel outward through a field of terminal glyphs before your artwork settles into view. |
+| **Circuit** | |
+| <img src="docs/effects/circuit.gif" width="400" alt="Circuit: glowing orthogonal paths trace across the grid and reveal the Macarchy wordmark"><br>Glowing paths take right-angle turns across the grid and trace your artwork into place. | |
+
+### ttfx effects
+
+All 37 effects below are included. These original upstream GIFs show the Omarchy wordmark in a terminal; Macarchy renders your chosen artwork through its native grid, so font sizing and timing can differ. Some upstream previews shorten timed phases for the gallery. Animation credit: [TerminalTextEffects](https://github.com/ChrisBuilds/terminaltexteffects) by ChrisBuilds, ported to Rust by [ttfx](https://github.com/omacom/ttfx).
+
+|     |     |
+|:---:|:---:|
+| <b>beams</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/beams.gif" width="400" alt="beams"><br><sub>Create beams which travel over the canvas illuminating the characters behind them</sub> | <b>binarypath</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/binarypath.gif" width="400" alt="binarypath"><br><sub>Binary representations of each character move towards the home coordinate of the character</sub> |
+| <b>blackhole</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/blackhole.gif" width="400" alt="blackhole"><br><sub>Characters are consumed by a black hole and explode outwards</sub> | <b>bouncyballs</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/bouncyballs.gif" width="400" alt="bouncyballs"><br><sub>Characters are bouncy balls falling from the top of the canvas</sub> |
+| <b>bubbles</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/bubbles.gif" width="400" alt="bubbles"><br><sub>Characters are formed into bubbles that float down and pop</sub> | <b>burn</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/burn.gif" width="400" alt="burn"><br><sub>Burns vertically in the canvas</sub> |
+| <b>colorshift</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/colorshift.gif" width="400" alt="colorshift"><br><sub>Display a gradient that shifts colors across the terminal</sub> | <b>crumble</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/crumble.gif" width="400" alt="crumble"><br><sub>Characters lose color and crumble into dust, vacuumed up, and reformed</sub> |
+| <b>decrypt</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/decrypt.gif" width="400" alt="decrypt"><br><sub>Display a movie style decryption effect</sub> | <b>errorcorrect</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/errorcorrect.gif" width="400" alt="errorcorrect"><br><sub>Some characters start in the wrong position and are corrected in sequence</sub> |
+| <b>expand</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/expand.gif" width="400" alt="expand"><br><sub>Expands the text from a single point</sub> | <b>fireworks</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/fireworks.gif" width="400" alt="fireworks"><br><sub>Characters launch and explode like fireworks and fall into place</sub> |
+| <b>highlight</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/highlight.gif" width="400" alt="highlight"><br><sub>Run a specular highlight across the text</sub> | <b>laseretch</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/laseretch.gif" width="400" alt="laseretch"><br><sub>A laser etches characters onto the terminal</sub> |
+| <b>matrix</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/matrix.gif" width="400" alt="matrix"><br><sub>Matrix digital rain effect</sub> | <b>middleout</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/middleout.gif" width="400" alt="middleout"><br><sub>Text expands in a single row or column in the middle of the canvas then out</sub> |
+| <b>orbittingvolley</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/orbittingvolley.gif" width="400" alt="orbittingvolley"><br><sub>Four launchers orbit the canvas firing volleys of characters inward to build the input text from the center out</sub> | <b>overflow</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/overflow.gif" width="400" alt="overflow"><br><sub>Input text overflows and scrolls the terminal in a random order until eventually appearing ordered</sub> |
+| <b>pour</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/pour.gif" width="400" alt="pour"><br><sub>Pours the characters into position from the given direction</sub> | <b>print</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/print.gif" width="400" alt="print"><br><sub>Lines are printed one at a time following a print head. Print head performs line feed, carriage return</sub> |
+| <b>rain</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/rain.gif" width="400" alt="rain"><br><sub>Rain characters from the top of the canvas</sub> | <b>randomsequence</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/randomsequence.gif" width="400" alt="randomsequence"><br><sub>Prints the input data in a random sequence</sub> |
+| <b>rings</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/rings.gif" width="400" alt="rings"><br><sub>Characters are dispersed and form into spinning rings</sub> | <b>scattered</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/scattered.gif" width="400" alt="scattered"><br><sub>Text is scattered across the canvas and moves into position</sub> |
+| <b>slice</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/slice.gif" width="400" alt="slice"><br><sub>Slices the input in half and slides it into place from opposite directions</sub> | <b>slide</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/slide.gif" width="400" alt="slide"><br><sub>Slide characters into view from outside the terminal</sub> |
+| <b>smoke</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/smoke.gif" width="400" alt="smoke"><br><sub>Smoke floods the canvas colorizing any characters it crosses</sub> | <b>spotlights</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/spotlights.gif" width="400" alt="spotlights"><br><sub>Spotlights search the text area, illuminating characters, before converging in the center and expanding</sub> |
+| <b>spray</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/spray.gif" width="400" alt="spray"><br><sub>Draws the characters spawning at varying rates from a single point</sub> | <b>swarm</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/swarm.gif" width="400" alt="swarm"><br><sub>Characters are grouped into swarms and move around the terminal before settling into position</sub> |
+| <b>sweep</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/sweep.gif" width="400" alt="sweep"><br><sub>Sweep across the canvas to reveal uncolored text, reverse sweep to color the text</sub> | <b>synthgrid</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/synthgrid.gif" width="400" alt="synthgrid"><br><sub>Create a grid which fills with characters dissolving into the final text</sub> |
+| <b>thunderstorm</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/thunderstorm.gif" width="400" alt="thunderstorm"><br><sub>Create a thunderstorm in the terminal</sub> | <b>unstable</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/unstable.gif" width="400" alt="unstable"><br><sub>Spawn characters jumbled, explode them to the edge of the canvas, then reassemble them in the correct layout</sub> |
+| <b>vhstape</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/vhstape.gif" width="400" alt="vhstape"><br><sub>Lines of characters glitch left and right and lose detail like an old VHS tape</sub> | <b>waves</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/waves.gif" width="400" alt="waves"><br><sub>Waves travel across the terminal leaving behind the characters</sub> |
+| <b>wipe</b><br><img src="https://raw.githubusercontent.com/omacom/ttfx/7203e354498462064b7c0a89375051f65cf2ce99/docs/effects/wipe.gif" width="400" alt="wipe"><br><sub>Wipes the text across the terminal to reveal characters</sub> |  |
 
 ## Use the local build
 
@@ -48,7 +86,7 @@ After Swift-only changes, `python3 scripts/build.py --skip-engine` reuses the ex
 
 The companion writes `~/.config/macarchy/settings.json` and `~/.config/macarchy/screensaver.txt`. The saver reloads them at effect boundaries. Malformed input falls back to the last valid configuration. A copy saved through Apple's `ScreenSaverDefaults` API is available to hosts that cannot read the public files.
 
-Text art supports UTF-8 block and Braille characters, up to 256 columns, 128 lines and 64 KiB. PNG/SVG import converts to an 80×26 grid with block/Braille, threshold and invert controls. The app supports a saved background color and text size. Effects use the original per-effect color palettes.
+Text art supports UTF-8 block and Braille characters, up to 256 columns, 128 lines and 64 KiB. PNG/SVG import converts to an 80×26 grid with block/Braille, threshold and invert controls. The app supports a saved background color and text size. Effects use their per-effect color palettes.
 
 The engine steps at 60 Hz, and app previews present at 30 FPS. The display link controls full-screen presentation. This follows the native bridge's timing policy; it does not claim identical duration or pixels to Omarchy's 120 FPS terminal loop.
 
@@ -61,7 +99,9 @@ Each display rotates independently. macOS can create several preview and full-sc
 Tests/SaverHost/run.sh --bundle build/Macarchy.saver --output build/evidence/saver-host
 ```
 
-The engine suite exercises all 37 effects to completion through the native grid and actual main-thread C ABI, repeated random transitions, conversion, errors and ABI compatibility. The saver harness loads the packaged `NSPrincipalClass`, captures moving previews, and verifies stop, resize, detach, sleep/wake notifications and deallocation. Add `--visible` to the saver harness for its brief visible Metal host check.
+The engine suite exercises all 40 effects to completion through the native grid and actual main-thread C ABI, repeated random transitions, conversion, errors and ABI compatibility. The saver harness loads the packaged `NSPrincipalClass`, captures moving previews, and verifies stop, resize, detach, sleep/wake notifications and deallocation. Add `--visible` to the saver harness for its brief visible Metal host check.
+
+The [current build 4 qualification](docs/evidence/build-0.2.0-4.json) records 74 passing Rust tests, all 40 native C ABI effect cycles, packaged AppKit/Metal host checks, and verified build and installed identities for v0.2.0.
 
 The [submodule qualification](docs/evidence/ttfx-submodule-2026-10-11.json) records a fresh checkout, public dependency initialization, all 65 Rust tests and 37 C ABI effect cycles, and a complete signed native build. The pinned dependency matches all 147 files of the previous engine snapshot.
 
@@ -73,14 +113,18 @@ Automatic idle activation was also verified on macOS 26.5.2: after 60 seconds of
 - `Sources/ScreenSaver`: documented `ScreenSaverView` host, CPU preview and configure sheet.
 - `Sources/Shared`: reusable engine bridge, Metal cell renderer and validated configuration.
 - `Sources/Integration`: user-level saver installation.
-- `crates/omacy-engine`: Rust bridge, conversion and engine tests.
+- `crates/omacy-engine`: Rust bridge, Macarchy original effects, conversion and engine tests.
 - `vendor/ttfx`: submodule pinned to the v0.3.2 engine with the existing native bridge patch.
 - `Resources`: original Macarchy artwork/icon and licensed Fairfax HD font.
 
 Window-management presets and coordinated terminal themes are planned as later modules; this release delivers screensavers.
 
+## Regenerate the original previews
+
+With Xcode and Rust installed, run `./scripts/render-previews.sh`. The tool steps the production C ABI on the main thread and exports Aurora, Starfield and Circuit to `docs/effects/`. It also writes PNG samples under `build/previews/` for visual review. The GIFs use seed 42 and sample the 60 Hz simulation every fourth frame.
+
 ## Credits
 
-Macarchy adapts the MIT-licensed native engine bridge and renderer from [Omacy](https://github.com/dedene/omacy), pinned at `45379ab`. The animation designs originate in [TerminalTextEffects](https://github.com/ChrisBuilds/terminaltexteffects) by ChrisBuilds, via [ttfx](https://github.com/omacom/ttfx). The font is Fairfax HD under SIL OFL. See [NOTICE](NOTICE), [LICENSE](LICENSE) and `ThirdParty/Omacy` for preserved attribution.
+Macarchy adapts the MIT-licensed native engine bridge and renderer from [Omacy](https://github.com/dedene/omacy), pinned at `45379ab`. The 37 upstream animation designs originate in [TerminalTextEffects](https://github.com/ChrisBuilds/terminaltexteffects) by ChrisBuilds, via [ttfx](https://github.com/omacom/ttfx). Aurora, Starfield and Circuit are Macarchy originals. The font is Fairfax HD under SIL OFL. See [NOTICE](NOTICE), [LICENSE](LICENSE) and `ThirdParty/Omacy` for preserved attribution.
 
 This is an independent project with its own branding. It is not an official Omarchy or Omacy distribution.
