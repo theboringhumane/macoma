@@ -1,0 +1,104 @@
+{
+  "app_version": "0.1.0",
+  "build": "3",
+  "verified_at": "2026-10-10T18:18:56.219234+00:00",
+  "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+  "os": "26.5.2",
+  "architecture": "arm64",
+  "signing": "ad-hoc local development",
+  "artifact_verification": {
+    "built_app": {
+      "path": "build/Macarchy.app",
+      "version": "0.1.0",
+      "build": "3",
+      "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+      "sha256": "8e130e7ab6681ffebfc6b179fd3908d2afd02300d1342f123c49f2a9cf83da5e",
+      "signature_verified": true,
+      "signature_output": ""
+    },
+    "installed_app": {
+      "path": "~/Applications/Macarchy.app",
+      "version": "0.1.0",
+      "build": "3",
+      "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+      "sha256": "8e130e7ab6681ffebfc6b179fd3908d2afd02300d1342f123c49f2a9cf83da5e",
+      "signature_verified": true,
+      "signature_output": ""
+    },
+    "built_saver": {
+      "path": "build/Macarchy.saver",
+      "version": "0.1.0",
+      "build": "3",
+      "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+      "sha256": "468131403b9e42cf2d73338fd204ae5c500c3ae78ca0dde790ba2d118626eb46",
+      "signature_verified": true,
+      "signature_output": ""
+    },
+    "installed_saver": {
+      "path": "~/Library/Screen Savers/Macarchy.saver",
+      "version": "0.1.0",
+      "build": "3",
+      "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+      "sha256": "468131403b9e42cf2d73338fd204ae5c500c3ae78ca0dde790ba2d118626eb46",
+      "signature_verified": true,
+      "signature_output": ""
+    },
+    "embedded_saver": {
+      "path": "build/Macarchy.app/Contents/Resources/Macarchy.saver",
+      "version": "0.1.0",
+      "build": "3",
+      "source_fingerprint": "04c299bcc3b15fe4e56e51aa4ecf1b5d8bd7564867dcf84c90827cdc94a418b5",
+      "sha256": "468131403b9e42cf2d73338fd204ae5c500c3ae78ca0dde790ba2d118626eb46",
+      "signature_verified": true,
+      "signature_output": ""
+    }
+  },
+  "archive": {
+    "path": "build/Macarchy-0.1.0-macos-arm64.zip",
+    "sha256": "70568d4e0359ef8721aaccd99ff090de9ed6ef9bc3899376bbd124421df00cb4",
+    "bytes": 11731188,
+    "executables": [
+      {
+        "path": "Macarchy.app/Contents/MacOS/Macarchy",
+        "sha256": "8e130e7ab6681ffebfc6b179fd3908d2afd02300d1342f123c49f2a9cf83da5e"
+      },
+      {
+        "path": "Macarchy.app/Contents/Resources/Macarchy.saver/Contents/MacOS/Macarchy",
+        "sha256": "468131403b9e42cf2d73338fd204ae5c500c3ae78ca0dde790ba2d118626eb46"
+      }
+    ]
+  },
+  "ui_observed": [
+    "Native SwiftUI NavigationSplitView sidebar, system title bar and toolbar, grouped inspector",
+    "Native artwork sheet with text editor, Block/Braille choice, threshold slider, invert checkbox and import controls",
+    "Companion catalog contains all 37 effects and Installed status",
+    "Metal Beams preview and full-screen preview window observed during build 3 verification",
+    "User selected Rings, then Rain and opened the artwork editor"
+  ],
+  "source_review": {
+    "liquid_glass": "GlassEffectContainer and glass/glassProminent button styles gated with macOS 26 availability checks",
+    "fallback": "Standard native controls on macOS 15; minimum macOS 26 SDK required to compile",
+    "appearance": "System appearance and editor colors; no forced dark mode or custom dashboard palette"
+  },
+  "prior_engine_and_saver_qualification": {
+    "evidence": "build-0.1.0-2.json",
+    "tested_saver_build": "2",
+    "engine_rust_tests": 65,
+    "complete_effects_native_c_abi": 37,
+    "scope": "Build 3 changes the companion interface. Engine and saver implementation are unchanged; native saver lifecycle and Apple-host tests were not rerun for the interface update."
+  },
+  "system_settings_changed_by_agent": false,
+  "not_qualified": [
+    "Physical multiple displays",
+    "Physical sleep/wake",
+    "macOS15 hardware",
+    "Public notarized distribution"
+  ],
+  "additional_verification": {
+    "automatic_idle_activation": {
+      "verified": true,
+      "evidence": "idle-activation-0.1.0-3.json",
+      "visual_confirmation": "User confirmed that animated artwork appeared after the automatic idle launch."
+    }
+  }
+}

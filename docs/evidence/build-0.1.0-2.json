@@ -1,0 +1,85 @@
+{
+  "app_version": "0.1.0",
+  "build": "2",
+  "source_fingerprint": "908c8220a4dff5de4e287b2a7cf700e9aec3ec7c750a4d7b80bedd0fa25216f0",
+  "os": "26.5.2",
+  "architecture": "arm64",
+  "installed_app": "~/Applications/Macarchy.app",
+  "installed_saver": "~/Library/Screen Savers/Macarchy.saver",
+  "app_sha256": "fab1241cb67268c5815ddf2cbc73d5a39cceb558670e7eb6ad3f7177fb170a43",
+  "saver_sha256": "8b6db8ba58f64b17a4603c6b82ddc6ba51aa6255092bd28714899d68d3f152eb",
+  "signing": "ad-hoc local development",
+  "engine_rust_tests": 65,
+  "complete_effects_native_c_abi": 37,
+  "native_saver_host": {
+    "bundle": "build/Macarchy.saver",
+    "lifecycle": [
+      "stop",
+      "restart",
+      "resizeWhileStopped",
+      "detach",
+      "reattach",
+      "displaySleep",
+      "displayWake",
+      "release"
+    ],
+    "metal": {
+      "animationRequested": true,
+      "backend": "metal",
+      "currentEffect": "random",
+      "diagnostic": "",
+      "engineActive": true,
+      "height": 1169,
+      "isPreview": false,
+      "metalFrameCount": 367,
+      "sharedDisplaySynchronization": false,
+      "softwareFrameCount": 0,
+      "softwareFrameSignature": 0,
+      "width": 1800
+    },
+    "preview": {
+      "animationRequested": true,
+      "backend": "software",
+      "currentEffect": "random",
+      "diagnostic": "",
+      "engineActive": true,
+      "height": 210,
+      "isPreview": true,
+      "metalFrameCount": 0,
+      "sharedDisplaySynchronization": false,
+      "softwareFrameCount": 145,
+      "softwareFrameSignature": 14499569547033536197,
+      "uniqueFrameSignatures": 58,
+      "width": 360
+    },
+    "principalClass": "MacarchySaverView",
+    "systemSettingsChanged": false,
+    "visibleWindow": true
+  },
+  "ui_observed": [
+    "Companion all37 catalog and artwork controls",
+    "Changing Metal Beams preview",
+    "Installed status",
+    "macOS Settings SelectedScreenSaver: Macarchy"
+  ],
+  "system_host_observed": "Apple legacyScreenSaver PID 92750 loaded the installed build2 binary from Library/Screen Savers/Macarchy.saver after reopening the selector; the mapped module inode matched the installed executable during local verification. The previous process retained the backed-up initial binary and is excluded from build2 qualification.",
+  "not_qualified": [
+    "Automatic idle activation",
+    "Physical multiple displays",
+    "Physical sleep/wake",
+    "macOS15 hardware",
+    "Public notarized distribution"
+  ],
+  "installed_signatures_verified": true,
+  "system_settings_observed": {
+    "selected": "Macarchy",
+    "mode": "Custom",
+    "idle_label": "After 1 minute",
+    "warning": "Display will sleep before screen saver starts. You can manage the timing in Lock Screen Settings.",
+    "changed_by_agent": false
+  },
+  "archive": {
+    "path": "build/Macarchy-0.1.0-macos-arm64.zip",
+    "sha256": "38f9047f90cdf83ea469688ebade854c3d276a83c9781edb695535d2e80ccbc2"
+  }
+}
