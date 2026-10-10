@@ -278,7 +278,7 @@ fn ascii_line_cap() {
 }
 
 #[test]
-fn effect_pool_is_thirty_seven() {
+fn upstream_effect_pool_remains_thirty_seven() {
     assert_eq!(ttfx::effects::EffectCommand::NAMES.len(), 37);
 }
 
@@ -449,12 +449,15 @@ fn complete_visible_cycle(s: &mut Session, label: &str) -> usize {
 #[test]
 fn all_catalog_effects_complete_native_grid_cycles() {
     let mut total_frames = 0;
-    for name in ttfx::effects::EffectCommand::NAMES {
+    for name in crate::catalog::names() {
         let mut s = session(name, 80, 24);
         total_frames += complete_visible_cycle(&mut s, name);
         assert_eq!(s.generation(), 0);
     }
-    println!("PASS virtual catalog: 37 complete cycles, {total_frames} frames");
+    println!(
+        "PASS virtual catalog: {} complete cycles, {total_frames} frames",
+        crate::catalog::names().len()
+    );
 }
 
 #[test]

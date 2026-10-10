@@ -88,11 +88,71 @@ static size_t complete_cycle(OmacySession *session, const char *name,
   return 0;
 }
 
-int main(void) {
+static void mixed_original_pool_cycles(void) {
+  const char *names[] = {"aurora", "starfield", "circuit", "wipe"};
+  OmacyByteSlice pool[4];
+  for (size_t index = 0; index < 4; ++index) {
+    pool[index].ptr = (const uint8_t *)names[index];
+    pool[index].len = strlen(names[index]);
+  }
+  const uint8_t art[] = "ORIGINAL\nPOOL";
+  OmacySessionConfig config = {0};
+  config.ascii = art;
+  config.ascii_len = sizeof(art) - 1;
+  config.effect = (const uint8_t *)"random";
+  config.effect_len = 6;
+  config.effect_pool = pool;
+  config.effect_pool_count = 4;
+  config.bg_r = 17;
+  config.bg_g = 19;
+  config.bg_b = 24;
+  config.bg_a = 255;
+  config.has_seed = 1;
+  config.seed = 193;
+  OmacySession *session = NULL;
+  require_ok(omacy_session_create(&config, 24, 10, &session), NULL);
+  uint32_t cols = 24;
+  uint32_t rows = 10;
+  for (size_t cycle = 0; cycle < 8; ++cycle) {
+    (void)complete_cycle(session, "mixed-original-pool", cols, rows);
+    uint64_t generation = UINT64_MAX;
+    require_ok(omacy_session_generation(session, &generation), session);
+    assert(generation == cycle);
+    if (cycle == 7) break;
+    char next_art[64];
+    const int length = snprintf(next_art, sizeof(next_art), "GENERATION %zu\nNEXT POOL", cycle + 1);
+    assert(length > 0 && (size_t)length < sizeof(next_art));
+    cols = cycle % 2 == 0 ? 32 : 24;
+    rows = cycle % 2 == 0 ? 12 : 10;
+    /* Force every original and one upstream effect, then mix them. */
+    const OmacyByteSlice *next_pool = cycle < 4 ? &pool[cycle] : pool;
+    const size_t next_pool_count = cycle < 4 ? 1 : 4;
+    require_ok(omacy_session_begin_next_with_config(session, (const uint8_t *)next_art,
+                                                   (size_t)length, next_pool, next_pool_count,
+                                                   cols, rows), session);
+  }
+  omacy_session_destroy(session);
+  printf("PASS mixed original pool: 8 cycles, 7 config transitions\n");
+}
+
+int main(int argc, char **argv) {
+  const bool custom_only = argc == 2 && strcmp(argv[1], "--custom-only") == 0;
+  assert(argc == 1 || custom_only);
   const char *art = "MACARCHY\n  /\\  /\\\n [__][__]";
+  const char *expected_names[] = {
+    "beams", "binarypath", "blackhole", "bouncyballs", "bubbles", "burn",
+    "colorshift", "crumble", "decrypt", "errorcorrect", "expand", "fireworks",
+    "highlight", "laseretch", "matrix", "middleout", "orbittingvolley", "overflow",
+    "pour", "print", "rain", "randomsequence", "rings", "scattered", "slice",
+    "slide", "smoke", "spotlights", "spray", "swarm", "sweep", "synthgrid",
+    "thunderstorm", "unstable", "vhstape", "waves", "wipe",
+    "aurora", "starfield", "circuit"
+  };
   const size_t count = omacy_effect_catalog_count();
-  assert(count == 37);
+  assert(count == 40);
+  assert(count == sizeof(expected_names) / sizeof(expected_names[0]));
   size_t total_frames = 0;
+  size_t completed_effects = 0;
   for (size_t index = 0; index < count; ++index) {
     const uint8_t *name_bytes = NULL;
     size_t name_length = 0;
@@ -100,6 +160,9 @@ int main(void) {
     assert(name_length > 0 && name_length < 64);
     char name[64] = {0};
     memcpy(name, name_bytes, name_length);
+    assert(strcmp(name, expected_names[index]) == 0);
+    if (custom_only && index < 37) continue;
+    ++completed_effects;
     OmacySessionConfig config = {0};
     config.ascii = (const uint8_t *)art;
     config.ascii_len = strlen(art);
@@ -130,6 +193,7 @@ int main(void) {
     omacy_session_destroy(session);
   }
   printf("PASS catalog lifecycle: %zu effects, %zu config transitions, %zu frames\n",
-         count, count, total_frames);
+         completed_effects, completed_effects, total_frames);
+  mixed_original_pool_cycles();
   return 0;
 }

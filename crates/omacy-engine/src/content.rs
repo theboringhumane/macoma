@@ -1,6 +1,5 @@
-use crate::limits;
+use crate::{catalog, limits};
 use crate::status::EngineError;
-use ttfx::effects::EffectCommand;
 use ttfx::utils::rng::Rng;
 
 #[derive(Clone, Debug)]
@@ -8,12 +7,12 @@ pub struct Content {
     pub art: String,
     pub effect: String,
     pub bg: [u8; 4],
-    /// Include list for `effect == "random"`. Empty means all 37 names.
+    /// Include list for `effect == "random"`. Empty means the complete catalog.
     pub pool: Vec<String>,
 }
 
 pub fn is_known_effect(name: &str) -> bool {
-    name == "random" || EffectCommand::NAMES.contains(&name)
+    name == "random" || catalog::contains(name)
 }
 
 pub fn parse_utf8(bytes: &[u8], what: &str) -> Result<String, EngineError> {
@@ -58,7 +57,7 @@ pub fn validate_effect(name: &str) -> Result<(), EngineError> {
 /// An empty list is the canonical representation of "all effects".
 pub fn validate_pool(names: &[String]) -> Result<(), EngineError> {
     for (index, name) in names.iter().enumerate() {
-        if !EffectCommand::NAMES.contains(&name.as_str()) {
+        if !catalog::contains(name) {
             return Err(EngineError::InvalidArg(format!(
                 "unknown effect '{name}' in pool"
             )));
@@ -104,7 +103,7 @@ pub fn pick_effect_name<'a>(effect: &'a str, pool: &'a [String], rng: &mut Rng) 
         return effect;
     }
     if pool.is_empty() {
-        EffectCommand::NAMES[rng.choice_index(EffectCommand::NAMES.len())]
+        catalog::names()[rng.choice_index(catalog::names().len())]
     } else {
         pool[rng.choice_index(pool.len())].as_str()
     }
@@ -136,7 +135,7 @@ mod tests {
         let pool: Vec<String> = Vec::new();
         let mut rng = Rng::seeded(7);
         let name = pick_effect_name("random", &pool, &mut rng);
-        assert!(EffectCommand::NAMES.contains(&name), "{name}");
+        assert!(catalog::contains(name), "{name}");
     }
 
     #[test]

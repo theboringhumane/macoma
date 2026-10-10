@@ -339,7 +339,13 @@ fn panic_invalidates_cells() {
 #[test]
 fn effect_catalog_returns_static_utf8_and_clears_outputs_out_of_range() {
     let count = omacy_effect_catalog_count();
-    assert_eq!(count, 37);
+    assert_eq!(count, 40);
+    let expected = [
+        ttfx::effects::EffectCommand::NAMES,
+        &["aurora", "starfield", "circuit"],
+    ]
+    .concat();
+    assert_eq!(expected.len(), count);
     for index in 0..count {
         let mut bytes = ptr::null();
         let mut len = 0;
@@ -347,7 +353,18 @@ fn effect_catalog_returns_static_utf8_and_clears_outputs_out_of_range() {
         assert_eq!(status, OmacyStatus::Ok);
         assert!(!bytes.is_null());
         let name = unsafe { std::str::from_utf8(std::slice::from_raw_parts(bytes, len)).unwrap() };
-        assert_eq!(name, ttfx::effects::EffectCommand::NAMES[index]);
+        assert_eq!(name, expected[index]);
+        let mut repeated_bytes = ptr::null();
+        let mut repeated_len = 0;
+        assert_eq!(
+            unsafe { omacy_effect_catalog_get(index, &mut repeated_bytes, &mut repeated_len) },
+            OmacyStatus::Ok
+        );
+        assert_eq!(
+            (repeated_bytes, repeated_len),
+            (bytes, len),
+            "catalog strings must remain stable across reads"
+        );
     }
 
     let sentinel = wordmark();
@@ -368,7 +385,7 @@ fn effect_catalog_returns_static_utf8_and_clears_outputs_out_of_range() {
 fn effect_catalog_is_available_off_main_thread() {
     std::thread::spawn(|| {
         let count = omacy_effect_catalog_count();
-        assert_eq!(count, 37);
+        assert_eq!(count, 40);
         let mut bytes = ptr::null();
         let mut len = 0;
         let status = unsafe { omacy_effect_catalog_get(0, &mut bytes, &mut len) };

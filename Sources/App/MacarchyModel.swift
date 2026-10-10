@@ -40,7 +40,11 @@ final class MacarchyModel: ObservableObject {
 
     var filteredEffects: [MacarchyEffect] {
         guard !search.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return effects }
-        return effects.filter { $0.name.localizedCaseInsensitiveContains(search) || $0.family.localizedCaseInsensitiveContains(search) }
+        return effects.filter {
+            $0.name.localizedCaseInsensitiveContains(search)
+                || $0.family.localizedCaseInsensitiveContains(search)
+                || $0.origin.rawValue.localizedCaseInsensitiveContains(search)
+        }
     }
 
     var currentEffect: MacarchyEffect { effects.first { $0.id == selectedEffect } ?? effects[0] }

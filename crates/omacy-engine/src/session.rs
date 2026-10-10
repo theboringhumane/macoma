@@ -1,4 +1,3 @@
-use ttfx::effects::EffectCommand;
 use ttfx::engine::ctx::{Clock, EngineCtx};
 use ttfx::engine::effect::Effect;
 use ttfx::engine::terminal::{PackedCell, TerminalConfig};
@@ -584,7 +583,7 @@ fn construct_effect(
     clock_kind: ClockKind,
 ) -> Result<(Box<dyn Effect>, EngineCtx), EngineError> {
     let name = pick_effect_name(&content.effect, &content.pool, pick_rng);
-    let mut effect = EffectCommand::from_name(name)
+    let mut effect = crate::catalog::create(name)
         .ok_or_else(|| EngineError::InvalidArg(format!("unknown effect '{name}'")))?;
     let color = Color::from_hex(&format!(
         "{:02x}{:02x}{:02x}",

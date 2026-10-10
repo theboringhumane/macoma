@@ -73,7 +73,7 @@ unsafe fn parse_effect_pool(
             "null effect pool with nonzero count".into(),
         ));
     }
-    if effect_pool_count > ttfx::effects::EffectCommand::NAMES.len() {
+    if effect_pool_count > crate::catalog::names().len() {
         return Err(EngineError::Limit(
             "effect pool exceeds catalog size".into(),
         ));
@@ -348,7 +348,7 @@ pub unsafe extern "C" fn omacy_session_begin_next_with_config(
 /// Safe to call from any thread.
 #[no_mangle]
 pub extern "C" fn omacy_effect_catalog_count() -> usize {
-    ttfx::effects::EffectCommand::NAMES.len()
+    crate::catalog::names().len()
 }
 
 /// Borrows one immutable effect name. The returned pointer remains valid for
@@ -370,7 +370,7 @@ pub unsafe extern "C" fn omacy_effect_catalog_get(
         if out_ptr.is_null() || out_len.is_null() {
             return OmacyStatus::Null;
         }
-        let Some(name) = ttfx::effects::EffectCommand::NAMES.get(index) else {
+        let Some(name) = crate::catalog::names().get(index) else {
             set_tls_error("effect catalog index out of range");
             return OmacyStatus::InvalidArg;
         };

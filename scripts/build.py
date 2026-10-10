@@ -16,8 +16,8 @@ from check_dependencies import require_dependencies
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
-VERSION = "0.1.0"
-BUILD_NUMBER = "3"
+VERSION = "0.2.0"
+BUILD_NUMBER = "4"
 
 
 def run(*args, **kwargs):

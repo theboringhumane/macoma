@@ -55,22 +55,14 @@ private struct MacarchyEffectSidebar: View {
 
     var body: some View {
         List(selection: selection) {
-            Section("Effects") {
-                ForEach(model.filteredEffects) { effect in
-                    HStack {
-                        Label(effect.name, systemImage: effect.symbol)
-                        Spacer(minLength: 4)
-                        Toggle("Include \(effect.name) in rotation", isOn: Binding(
-                            get: { model.isIncluded(effect.id) },
-                            set: { model.setIncluded(effect.id, included: $0) }
-                        ))
-                        .labelsHidden()
-                        .toggleStyle(.checkbox)
-                        .controlSize(.small)
-                        .disabled(model.settings.effects.count == 1 && model.isIncluded(effect.id))
-                        .help("Include \(effect.name) in the rotation")
+            ForEach(MacarchyEffect.Origin.allCases) { origin in
+                let effects = model.filteredEffects.filter { $0.origin == origin }
+                if !effects.isEmpty {
+                    Section(origin.rawValue) {
+                        ForEach(effects) { effect in
+                            effectRow(effect)
+                        }
                     }
-                    .tag(effect.id)
                 }
             }
         }
@@ -82,6 +74,23 @@ private struct MacarchyEffectSidebar: View {
             }
         }
         .navigationTitle("Effects")
+    }
+
+    private func effectRow(_ effect: MacarchyEffect) -> some View {
+        HStack {
+            Label(effect.name, systemImage: effect.symbol)
+            Spacer(minLength: 4)
+            Toggle("Include \(effect.name) in rotation", isOn: Binding(
+                get: { model.isIncluded(effect.id) },
+                set: { model.setIncluded(effect.id, included: $0) }
+            ))
+            .labelsHidden()
+            .toggleStyle(.checkbox)
+            .controlSize(.small)
+            .disabled(model.settings.effects.count == 1 && model.isIncluded(effect.id))
+            .help("Include \(effect.name) in the rotation")
+        }
+        .tag(effect.id)
     }
 }
 
@@ -119,6 +128,7 @@ private struct MacarchyEffectDetail: View {
                 }
                 Text(model.currentEffect.detail).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                Text(model.currentEffect.origin.attribution).font(.caption).foregroundStyle(.secondary)
                 if model.artError != nil {
                     Label("Showing the last valid artwork", systemImage: "exclamationmark.circle")
                         .foregroundStyle(.secondary)

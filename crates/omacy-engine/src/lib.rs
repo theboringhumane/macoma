@@ -2,7 +2,9 @@
 
 mod abi;
 mod ascii;
+mod catalog;
 mod content;
+mod custom_effects;
 mod ffi;
 mod limits;
 mod session;
@@ -25,6 +27,9 @@ mod budget_tests;
 #[cfg(test)]
 #[path = "../tests/conversion.rs"]
 mod conversion_tests;
+#[cfg(test)]
+#[path = "../tests/custom_effects.rs"]
+mod custom_effects_tests;
 #[cfg(test)]
 #[path = "../tests/ffi.rs"]
 mod ffi_tests;

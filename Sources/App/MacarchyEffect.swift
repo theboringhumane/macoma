@@ -1,11 +1,22 @@
 import Foundation
 
 struct MacarchyEffect: Identifiable {
+    enum Origin: String, CaseIterable, Identifiable {
+        case macarchy = "Macarchy Originals"
+        case ttfx = "ttfx"
+
+        var id: String { rawValue }
+        var attribution: String { self == .macarchy ? "Macarchy Original" : "ttfx" }
+    }
+
     let id: String
     let name: String
     let family: String
     let detail: String
     let symbol: String
+    var origin: Origin { Self.originalEffects.contains(id) ? .macarchy : .ttfx }
+
+    private static let originalEffects: Set<String> = ["aurora", "starfield", "circuit"]
 
     static var all: [Self] {
         OmacyEffects.names.map { name in
@@ -17,12 +28,14 @@ struct MacarchyEffect: Identifiable {
     }
 
     private static let descriptions: [String: (String, String, String, String)] = [
+        "aurora": ("Aurora", "Light & color", "Curtains of color flow across the screen and reveal your artwork.", "waveform.path"),
         "beams": ("Beams", "Light & color", "Rays of light sweep through your characters.", "light.beacon.max"),
         "binarypath": ("Binary Path", "Digital", "A trail of binary finds its way into your artwork.", "point.topleft.down.curvedto.point.bottomright.up"),
         "blackhole": ("Black Hole", "Particles", "Characters orbit a dark center before settling into place.", "circle.dotted.circle"),
         "bouncyballs": ("Bouncy Balls", "Particles", "A playful cascade of characters with a little bounce.", "circle.grid.2x2"),
         "bubbles": ("Bubbles", "Particles", "Floating bubbles carry your characters into view.", "bubbles.and.sparkles"),
         "burn": ("Burn", "Weather & flow", "A glowing ember effect moves across your artwork.", "flame"),
+        "circuit": ("Circuit", "Digital", "Glowing paths turn at right angles to trace your artwork.", "cpu"),
         "colorshift": ("Color Shift", "Light & color", "A rolling spectrum of color transforms the canvas.", "circle.lefthalf.filled"),
         "crumble": ("Crumble", "Motion", "Your artwork breaks apart and falls through the canvas.", "square.stack.3d.down.right"),
         "decrypt": ("Decrypt", "Digital", "Scrambled characters resolve into a familiar message.", "lock.open"),
@@ -46,6 +59,7 @@ struct MacarchyEffect: Identifiable {
         "smoke": ("Smoke", "Weather & flow", "Soft clouds of characters drift through the canvas.", "smoke"),
         "spotlights": ("Spotlights", "Light & color", "Moving pools of light search across your artwork.", "flashlight.on.fill"),
         "spray": ("Spray", "Reveal", "A spray of characters paints your design onto the screen.", "aqi.medium"),
+        "starfield": ("Starfield", "Space", "Stars stream outward from the center before your artwork comes into view.", "sparkles"),
         "swarm": ("Swarm", "Particles", "A restless cloud of characters gathers into your artwork.", "circle.hexagongrid"),
         "sweep": ("Sweep", "Reveal", "A moving sweep brings each part of the artwork into view.", "arrow.right"),
         "synthgrid": ("Synth Grid", "Light & color", "A retro grid sets the stage for your artwork.", "grid"),
