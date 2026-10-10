@@ -16,12 +16,18 @@ Choose **Full Screen** in the controls below the preview or use the **Screensave
 
 ## Build
 
-Requires Xcode 26 with the macOS 26 SDK, Python 3, and Rust/Cargo. Swift sources use Swift 5 language mode on the current Swift toolchain. Liquid Glass APIs are availability-gated so the built app also runs on macOS 15. No package-manager installation or third-party updater is required.
+Requires Git, Xcode 26 with the macOS 26 SDK, Python 3, and Rust/Cargo. Swift sources use Swift 5 language mode on the current Swift toolchain. Liquid Glass APIs are availability-gated so the built app also runs on macOS 15. No package-manager installation or third-party updater is required.
 
 ```sh
+git clone --recurse-submodules https://github.com/theboringhumane/macarchy.git
+cd macarchy
 python3 scripts/build.py
 open build/Macarchy.app
 ```
+
+For an existing checkout, run `git submodule update --init --recursive` before building or running Cargo commands. GitHub source ZIPs omit submodule contents; use a recursive clone to build from source.
+
+`vendor/ttfx` is a submodule of [the native bridge fork](https://github.com/theboringhumane/ttfx/tree/macarchy-native-bridge), pinned to an exact commit based on upstream v0.3.2. That commit includes the existing Omacy bridge patch, so no manual patch step is needed. The upstream pin and patch provenance remain in [`vendor/ttfx.PIN`](vendor/ttfx.PIN) and [`vendor/patches/ttfx-omacy.patch`](vendor/patches/ttfx-omacy.patch). Use `git submodule update --init --recursive` to restore the recorded revision; `--remote` instead follows the fork branch and can select an unqualified revision.
 
 The build produces self-contained `build/Macarchy.app` and `build/Macarchy.saver` bundles. The app embeds the saver. Metal shaders are compiled by the system at runtime and cached in the process, so the optional Xcode Metal command-line toolchain is not required.
 
@@ -64,7 +70,7 @@ Automatic idle activation was also verified on macOS 26.5.2: after 60 seconds of
 - `Sources/Shared`: reusable engine bridge, Metal cell renderer and validated configuration.
 - `Sources/Integration`: user-level saver installation.
 - `crates/omacy-engine`: Rust bridge, conversion and engine tests.
-- `vendor/ttfx`: pinned v0.3.2 engine with the existing native bridge patch.
+- `vendor/ttfx`: submodule pinned to the v0.3.2 engine with the existing native bridge patch.
 - `Resources`: original Macarchy artwork/icon and licensed Fairfax HD font.
 
 Window-management presets and coordinated terminal themes are planned as later modules; this release delivers screensavers.

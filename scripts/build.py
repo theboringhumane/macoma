@@ -7,7 +7,12 @@ import os
 import plistlib
 import shutil
 import subprocess
+import sys
 import tempfile
+
+# Import build helpers without leaving bytecode in the source checkout.
+sys.dont_write_bytecode = True
+from check_dependencies import require_dependencies
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
@@ -39,11 +44,11 @@ def resources(bundle):
                          ("vendor/ttfx/LICENSE", "ttfx-MIT.txt"),
                          ("vendor/ttfx/NOTICE", "ttfx-NOTICE.txt"),
                          ("NOTICE", "NOTICE.txt")]:
-        if (ROOT / source).exists():
-            shutil.copy2(ROOT / source, notices / name)
+        shutil.copy2(ROOT / source, notices / name)
 
 
 def build(skip_engine=False):
+    require_dependencies(ROOT)
     BUILD.mkdir(exist_ok=True)
     run("xcrun", "swift", ROOT / "scripts/make-icon.swift", ROOT)
     run("iconutil", "-c", "icns", BUILD / "Macarchy.iconset", "-o", ROOT / "Resources/Macarchy.icns")

@@ -1,0 +1,5 @@
+[submodule "vendor/ttfx"]
+	path = vendor/ttfx
+	url = https://github.com/theboringhumane/ttfx.git
+	branch = macarchy-native-bridge
+	shallow = true

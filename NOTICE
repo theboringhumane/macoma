@@ -9,8 +9,11 @@ Some shared native code is copyright (c) 2026 Guillaume Louel, MIT License.
 See ThirdParty/Omacy/Aerial-LICENSE.
 
 The effects originate in TerminalTextEffects by ChrisBuilds and run through ttfx.
-See vendor/ttfx/LICENSE, vendor/ttfx/NOTICE and vendor/ttfx/PIN.
-The patched bridge uses ttfx v0.3.2; see vendor/patches/ttfx-omacy.patch.
+See vendor/ttfx/LICENSE, vendor/ttfx/NOTICE and vendor/ttfx.PIN.
+The submodule at vendor/ttfx pins a native bridge commit in
+https://github.com/theboringhumane/ttfx based on upstream ttfx v0.3.2.
+The existing Omacy patch is committed in that fork; vendor/patches/ttfx-omacy.patch
+is retained as provenance and does not need to be applied after checkout.
 
 The Fairfax HD font is copyright (c) 2017-2020 Kreative Software and is distributed
 under SIL Open Font License 1.1. See Resources/OFL.txt.

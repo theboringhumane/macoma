@@ -3,6 +3,7 @@ set -euo pipefail
 
 project_dir="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$project_dir"
+python3 "$project_dir/scripts/check_dependencies.py"
 export CARGO_BUILD_JOBS="${CARGO_BUILD_JOBS:-4}"
 qualification_dir="$project_dir/target/qualification"
 mkdir -p "$qualification_dir"
