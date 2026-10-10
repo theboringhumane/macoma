@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "product": "Macarchy",
+  "version": "0.1.0",
+  "build": "3",
+  "platform": {
+    "macOS": "26.5.2",
+    "architecture": "arm64"
+  },
+  "timezone": "Asia/Kolkata",
+  "visualOutputVerified": true,
+  "visual_confirmation": {
+    "source": "user",
+    "observed": true,
+    "scope": "Animated artwork appeared during automatic idle activation",
+    "capturedScreenshot": false
+  },
+  "automaticIdleActivation": {
+    "verified": true,
+    "timestamp": "2026-10-10T23:55:20.263+05:30",
+    "actualUserIdleSeconds": 60.0,
+    "targetUserIdleSeconds": 60.0,
+    "screenSaverStartState": 3,
+    "launchMode": 0,
+    "lockReason": "kLWLockFromScreenSaverIdleLaunch",
+    "lockReasonValue": 3,
+    "manualPreviewLaunchObservedDuringMonitor": false,
+    "moduleIdentifier": "dev.theboring.macarchy.screensaver",
+    "moduleAnimationStartedAt": "2026-10-10T23:55:20.990+05:30"
+  },
+  "loadedModule": {
+    "bundleExecutable": "Macarchy.saver/Contents/MacOS/Macarchy",
+    "version": "0.1.0",
+    "build": "3",
+    "binarySHA256": "468131403b9e42cf2d73338fd204ae5c500c3ae78ca0dde790ba2d118626eb46",
+    "installedBinaryMatchesBuildArtifact": true,
+    "systemHostMappedIdentityMatchesInstalledBinary": true
+  },
+  "boundedObservation": {
+    "firstSampleAt": "2026-10-10T23:55:05.575+05:30",
+    "lastSampleAt": "2026-10-10T23:56:55.579+05:30",
+    "sampleWindowSeconds": 110.004,
+    "observedSecondsAfterModuleAnimationStarted": 94.589,
+    "sampleCount": 12,
+    "finalHIDIdleSeconds": 155.461,
+    "HIDIdleIncreasedAcrossEverySample": true,
+    "mappedModuleRemainedPresentAcrossEverySample": true,
+    "macarchyErrorsOrFaultsLogged": 0,
+    "engineErrorOrDisplayBarrierWarningObserved": false
+  },
+  "sanitizedLogExcerpts": [
+    {
+      "timestamp": "2026-10-10T23:55:20.263+05:30",
+      "source": "loginwindow",
+      "message": "ScreenSaverDaemon _checkUserIdleDuringReset: actualUserIdle = 60.0, targetUserIdle = 60.0"
+    },
+    {
+      "timestamp": "2026-10-10T23:55:20.263+05:30",
+      "source": "loginwindow",
+      "message": "ScreenSaverDaemon _screenSaverStart: enter state 3, _launchMode=0"
+    },
+    {
+      "timestamp": "2026-10-10T23:55:20.264+05:30",
+      "source": "loginwindow",
+      "message": "LWScreenLock startScreenLock: entered kLWLockFromScreenSaverIdleLaunch (3)"
+    },
+    {
+      "timestamp": "2026-10-10T23:55:20.927+05:30",
+      "source": "WallpaperAgent",
+      "message": "BEGIN - Initialize screen saver wallpaper for module Optional(\"dev.theboring.macarchy.screensaver\")"
+    },
+    {
+      "timestamp": "2026-10-10T23:55:20.990+05:30",
+      "source": "legacyScreenSaver",
+      "message": "ScreenSaverView startAnimation -- Starting animation on module: Macarchy"
+    },
+    {
+      "timestamp": "2026-10-10T23:55:21.525+05:30",
+      "source": "legacyScreenSaver",
+      "message": "ScreenSaverView startAnimation -- Starting animation on module: Macarchy"
+    }
+  ],
+  "scope": "Read-only CLI evidence verifies automatic system idle activation, the loaded module identity, and the bounded absence of logged Macarchy errors. The user separately confirmed that animated artwork appeared during that activation; no screenshot establishes this visual observation. Physical multi-display behavior, sleep/wake, and lock/unlock acceptance remain outside this evidence.",
+  "collectorActions": {
+    "readOnly": true,
+    "settingsChanged": false,
+    "manualPreviewStarted": false,
+    "systemProcessTerminated": false,
+    "computerUseInvoked": false
+  },
+  "preparation": {
+    "staleHostTerminatedBeforeMonitor": true,
+    "staleModuleIdentityVerifiedBeforeTermination": true,
+    "idleDisplaySleepAndPasswordSettingsChanged": false,
+    "computerUsePausedDuringIdleWait": true
+  },
+  "postActivationObservation": {
+    "readOnlyComputerUseInventoryRequested": true,
+    "timing": "After system logs had confirmed automatic idle activation",
+    "inputEventsSent": false
+  }
+}
