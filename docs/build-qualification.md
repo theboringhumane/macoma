@@ -1,6 +1,10 @@
 # Macoma control-plane qualification
 
-Local development release **0.3.1, build 7**, verified on 2026-10-11. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode. Build 6 qualification remains historical evidence below.
+Local development release **0.3.2, build 8**, verified on 2026-10-11. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode. Build 7 contains the screensaver resize fix described below; build 6 qualification remains historical evidence later in this report.
+
+## Build 8 distribution packaging
+
+Build 8 adds release automation for an arm64 DMG and its SHA-256 manifest, plus a current-user installer script. The workflow builds on an Apple Silicon macOS runner and attaches both assets to the tagged GitHub release. The app and saver remain ad-hoc signed until a Developer ID identity and notarization credentials are configured. A self-signed certificate is not a trusted distribution identity.
 
 ## Build 7 screensaver resize qualification
 

@@ -70,7 +70,19 @@ The native bridge retains the previously qualified v0.3.2 engine. Moving to a ne
 
 The build produces self-contained `build/Macoma.app` and `build/Macoma.saver` bundles. The app embeds the saver. Metal shaders are compiled by the system at runtime and cached in the process, so the optional Xcode Metal command-line toolchain is not required.
 
-Local builds are ad-hoc signed by default. Set `MACARCHY_SIGN_IDENTITY` to an installed identity to sign with that identity. This repository does not claim notarized public distribution. Both artifacts target arm64 and declare macOS 15 as the minimum; current runtime qualification is on macOS 26.5.2.
+Both artifacts target arm64 and declare macOS 15 as the minimum; current runtime qualification is on macOS 26.5.2. Local and automated release builds are ad-hoc signed unless a trusted Developer ID identity is configured. Ad-hoc signing is not notarization, and Gatekeeper may block downloaded builds.
+
+### Quick install
+
+On Apple Silicon, install the latest GitHub release with:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/theboringhumane/macoma/main/setup.sh | bash
+```
+
+The script downloads the release DMG and its SHA-256 file, verifies the checksum and bundle signatures, then installs the app and screensaver for the current user. Existing Macoma bundles are kept in `~/Library/Application Support/Macarchy/Backups`. It does not use `sudo` or change lock-screen settings. Ad-hoc signed downloads may still be blocked by Gatekeeper; a self-signed certificate does not establish public trust. Normal Gatekeeper distribution requires a Developer ID certificate and Apple notarization.
+
+Each `v*` tag builds the app, runs the packaged screensaver host check, creates the DMG and checksum, then attaches both to that GitHub release. The workflow can also be run manually for an existing release tag.
 
 To install both bundles for the current user:
 

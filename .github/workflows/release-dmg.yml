@@ -1,0 +1,53 @@
+name: Build and attach macOS DMG
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to build and attach a DMG to
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          submodules: recursive
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Build app and screensaver
+        run: python3 scripts/build.py
+
+      - name: Verify packaged screensaver host
+        run: Tests/SaverHost/run.sh --bundle build/Macoma.saver --output build/evidence/release-host
+
+      - name: Create DMG and checksum
+        run: scripts/package-dmg.sh
+
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" \
+              build/Macoma-macos-arm64.dmg build/Macoma-macos-arm64.dmg.sha256 setup.sh \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" \
+              build/Macoma-macos-arm64.dmg build/Macoma-macos-arm64.dmg.sha256 setup.sh \
+              --repo "$GITHUB_REPOSITORY" --title "Macoma $RELEASE_TAG" \
+              --notes "Apple Silicon DMG for macOS 15 and later. Release bundles are ad-hoc signed and are not notarized, so Gatekeeper may block launch. Trusted public distribution requires a Developer ID certificate and Apple notarization."
+          fi
