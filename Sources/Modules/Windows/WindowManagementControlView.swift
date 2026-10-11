@@ -53,14 +53,14 @@ struct WindowManagementControlView: View {
                             Button("Check access") { service.refreshAccess() }
                             Button("Open Accessibility Settings") { service.openAccessibilitySettings() }
                         }
-                        Text("Enable starts controlling windows on this Space. Pause and quit restore their saved positions. It keeps running when you close this window.")
+                        Text("Enable manages windows on every Space you visit. Closing this window keeps management active in the menu bar. Pause or quit to stop and restore saved positions.")
                             .font(.caption).foregroundStyle(.secondary)
                     }.padding(8)
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Current scope · Experimental").font(.headline)
-                    Text("One connected display and the current macOS Space. Switching Spaces, changing displays or sleeping pauses management.")
+                    Text("One connected display. Management follows you between macOS Spaces and handles the active Space. Changing displays or sleeping pauses management.")
                     Text("macOS keeps overflow windows partly visible, so extra columns leave a thin strip at the screen edge. Dialogs, fixed-size, minimized and screen-filling windows are left alone.")
                     if !service.hasSupportedDisplay {
                         Label("Multiple displays are not supported in this version.", systemImage: "display.2")

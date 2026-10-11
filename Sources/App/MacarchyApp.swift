@@ -3,6 +3,7 @@ import SwiftUI
 
 @main
 struct MacarchyApp: App {
+    @NSApplicationDelegateAdaptor(MacomaAppDelegate.self) private var appDelegate
     @StateObject private var model = MacarchyModel()
     @StateObject private var control = MacarchyControlPlaneModel()
     @Environment(\.scenePhase) private var scenePhase
@@ -45,6 +46,10 @@ struct MacarchyApp: App {
             MacarchyDesktopMenu(control: control)
         }
     }
+}
+
+private final class MacomaAppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
 }
 
 private struct MacarchyDesktopMenu: View {

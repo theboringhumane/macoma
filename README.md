@@ -18,7 +18,7 @@ On macOS 26, the app uses native Liquid Glass navigation, toolbars and controls.
 | --- | --- |
 | **Appearance** | 23 Omarchy palettes, a catalog of 96 wallpaper entries, custom image import, Apply and Restore. |
 | **Terminal** | A separate native Ghostty profile with the selected palette, fonts and an optional three-pane tmux Work session. |
-| **Windows** | Horizontally scrolling columns, vertical stacks, gaps, keyboard rearrangement and a focused-window border. Experimental; one display/current Space. |
+| **Windows** | Horizontally scrolling columns, vertical stacks, gaps, keyboard rearrangement and a focused-window border. Experimental; one display, follows the active Space. |
 | **Screensavers** | 40 effects, custom text/PNG/SVG artwork, live preview and a real macOS system screensaver. |
 
 The Overview brings these modules together. A menu-bar menu keeps navigation and Pause available when the main window is closed. Choose a palette in Appearance, apply it to your terminal profile, and use it for the window focus border. Each module has explicit controls; opening Macoma does not rearrange windows, install packages or replace shell dotfiles.
@@ -35,7 +35,7 @@ Managed profiles live under `~/.config/macarchy/terminal`. Each applied generati
 
 Enable window management from **Windows** after allowing Macoma in macOS Accessibility. New windows get columns; moving focus reveals columns beyond the viewport. You can stack windows, adjust column widths and reorder them using the app or its shortcuts. **Pause** restores saved positions, and quitting attempts restoration too.
 
-This is an experimental public-API implementation for **one display and the current native Space**. macOS cannot clip other apps into a custom viewport: overflow keeps a visible edge, and some apps clamp their size or position. The UI reports those cases. Space/display changes and sleep pause management. Multiple monitors, trackpad scrolling, compositor effects, native Space control and crash recovery are not implemented. Original frames are retained only for the running app session. Hidden, minimized or other-Space windows wait for restoration until they become visible again. See [window qualification](Tests/Windows/VALIDATION.md).
+This is an experimental public-API implementation for **one display**. Management follows you across Spaces and arranges windows on the active Space. macOS cannot clip other apps into a custom viewport: overflow keeps a visible edge, and some apps clamp their size or position. The UI reports those cases. Display changes and sleep pause management. Closing the main window leaves Macoma running in the menu bar; choosing Quit stops management. Multiple monitors, trackpad scrolling, compositor effects, native Space control and crash recovery are not implemented. Original frames are retained only for the running app session. Hidden, minimized or other-Space windows wait for restoration until they become visible again. See [window qualification](Tests/Windows/VALIDATION.md).
 
 ### Palettes and wallpapers
 

@@ -120,7 +120,7 @@ final class WindowManagementService: ObservableObject {
         notifications.append(workspace.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated {
                 guard let self, self.isEnabled else { return }
-                self.pause(reason: "Paused after a Space change. Return to the managed Space to restore any remaining windows.", visibleOnly: true)
+                self.switchManagedSpace()
             }
         })
         notifications.append(workspace.addObserver(forName: NSWorkspace.willSleepNotification, object: nil, queue: .main) { [weak self] _ in
@@ -142,6 +142,27 @@ final class WindowManagementService: ObservableObject {
     }
 
     func updateAccent(_ hex: String) { accentHex = hex; updateBorder() }
+
+    /// Window discovery is scoped to the active Space. Keep the service running
+    /// across Space changes, then rebuild its view of the newly active Space.
+    private func switchManagedSpace() {
+        cancelMotion()
+        reconciliation?.cancel(); reconciliation = nil
+        accessibility.stopObserving()
+        border.hide()
+        windows.removeAll()
+        appliedFrames.removeAll()
+        mutationEligibleIDs.removeAll()
+        pendingExplicitLayout = false
+        pendingExplicitFocusID = nil
+        manualInteractionPending = false
+        lastMutation = .distantPast
+        layout = ScrollingWindowLayout()
+        columns = []
+        screenID = NSScreen.screens.first?.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? NSNumber
+        status = "Switching Spaces…"
+        scheduleReconciliation(delay: 0.6)
+    }
 
     func refreshAccess() {
         hasAccessibility = accessibility.isTrusted
