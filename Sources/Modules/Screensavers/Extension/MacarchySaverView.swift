@@ -31,6 +31,9 @@ public final class MacarchySaverView: ScreenSaverView {
         OmacyStore.resourceBundle = Bundle(for: MacarchySaverView.self)
         animationTimeInterval = 1.0 / 30.0
         autoresizingMask = [.width, .height]
+        // ScreenSaverEngine may resize a view after its first frame. Keep the
+        // live grid in step with that move instead of waiting for an effect boundary.
+        renderer.appliesGeometryLive = true
         renderer.onEngineUnavailable = { [weak self] in self?.startSoftware() }
     }
 
@@ -140,6 +143,8 @@ public final class MacarchySaverView: ScreenSaverView {
             "softwareFrameCount": software?.frameCount ?? 0,
             "softwareFrameSignature": software?.frameSignature ?? 0,
             "metalFrameCount": renderer.renderedFrameCount,
+            "gridColumns": renderer.gridDimensions.columns,
+            "gridRows": renderer.gridDimensions.rows,
             "diagnostic": software?.diagnostic ?? "",
             "sharedDisplaySynchronization": renderer.displayCoordinator != nil,
             "isPreview": isPreview,
@@ -150,11 +155,14 @@ public final class MacarchySaverView: ScreenSaverView {
 
     private var usesSoftwarePreview: Bool {
         if isPreview { return true }
-        // Some Settings versions mark a hosted thumbnail as non-preview.
-        // Treat a view smaller than half of its own display as embedded.
-        guard let screen = window?.screen else { return false }
+        // Some Settings versions mark a hosted thumbnail as non-preview. Use
+        // both view and host-window size so a transiently small saver view in
+        // Apple's full-screen window does not get mistaken for that thumbnail.
+        guard let window, let screen = window.screen else { return false }
         return bounds.width < screen.frame.width * 0.5
             && bounds.height < screen.frame.height * 0.5
+            && window.frame.width < screen.frame.width * 0.5
+            && window.frame.height < screen.frame.height * 0.5
     }
 
     private func attemptStart() {
@@ -184,7 +192,7 @@ public final class MacarchySaverView: ScreenSaverView {
         switch renderer.attach(to: self, isPreview: false) {
         case .engine:
             backend = .metal
-            renderer.start()
+            renderer.start(limitsFrameRate: true)
         case .canary:
             startSoftware()
         }

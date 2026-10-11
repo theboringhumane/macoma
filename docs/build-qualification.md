@@ -1,6 +1,12 @@
 # Macoma control-plane qualification
 
-Local development release **0.3.0, build 6**, verified on 2026-10-11 from core commit `033a069cb3d6a94fcfade020bfff78ef246301a1`. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode.
+Local development release **0.3.1, build 7**, verified on 2026-10-11. Target: Apple Silicon, macOS 15+. Qualification machine: arm64, macOS 26.5.2, Xcode 26.6 / Swift 6.3.3, Swift 5 language mode. Build 6 qualification remains historical evidence below.
+
+## Build 7 screensaver resize qualification
+
+The packaged saver passed the preview and visible Metal host harness. In a full-size host window, the test resized the saver view from 1800×1169 to 480×320 and back. The Metal backend stayed active; the engine grid changed from 200×64 to 53×17 and returned to 200×64. The harness also passed start/stop, restart, detach/reattach, simulated display sleep/wake and release checks. It did not install the saver or change system settings.
+
+The fix checks both the saver view and its host window before treating an unmarked view as a Settings thumbnail. This avoids switching a temporarily small saver view in a full-screen host to software preview mode. The system screensaver display link is capped at 30 FPS. This host check does not qualify automatic idle activation, physical multi-display transitions, long-duration stability or RAM use.
 
 The control plane provides native SwiftUI navigation and a menu-bar menu for Appearance, Terminal, experimental Windows and Screensavers. Build 6 adds Command-T panes and the revised drag/resize handling. The user confirmed that Accessibility was allowed, dragging and resizing felt smooth, and Command-T created a new pane in a fresh Work session.
 

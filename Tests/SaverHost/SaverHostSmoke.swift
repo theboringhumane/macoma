@@ -116,7 +116,11 @@ struct SaverHostSmoke {
         guard let saver = principal.init(frame: NSRect(origin: .zero, size: frame.size), isPreview: false) else {
             throw Failure("Full-screen initializer returned nil")
         }
-        window.contentView = saver
+        let hostContent = NSView(frame: NSRect(origin: .zero, size: frame.size))
+        hostContent.autoresizingMask = [.width, .height]
+        saver.autoresizingMask = [.width, .height]
+        hostContent.addSubview(saver)
+        window.contentView = hostContent
         defer {
             saver.stopAnimation()
             window.contentView = NSView()
@@ -133,13 +137,37 @@ struct SaverHostSmoke {
         try require(running["backend"] as? String == "metal", "Full-screen host did not select Metal")
         try require(running["sharedDisplaySynchronization"] as? Bool == false, "Full-screen saver joined a shared display barrier")
         try require((running["metalFrameCount"] as? NSNumber)?.uint64Value ?? 0 > 1, "Metal host presented no frames")
+        let initialColumns = (running["gridColumns"] as? NSNumber)?.uint32Value ?? 0
+        let initialRows = (running["gridRows"] as? NSNumber)?.uint32Value ?? 0
+        try require(initialColumns > 1 && initialRows > 1, "Full-screen saver has no display-sized grid")
+        saver.setFrameSize(NSSize(width: 480, height: 320))
+        for _ in 0..<15 {
+            pump(1.0 / 30.0)
+            saver.animateOneFrame()
+        }
+        let resized = diagnostics(saver)
+        let resizedColumns = (resized["gridColumns"] as? NSNumber)?.uint32Value ?? 0
+        let resizedRows = (resized["gridRows"] as? NSNumber)?.uint32Value ?? 0
+        try require(resizedColumns > 1 && resizedRows > 1, "Live resize lost the saver grid")
+        try require(resizedColumns != initialColumns || resizedRows != initialRows,
+            "Live resize did not update the engine grid")
+        saver.setFrameSize(frame.size)
+        for _ in 0..<15 {
+            pump(1.0 / 30.0)
+            saver.animateOneFrame()
+        }
+        let restored = diagnostics(saver)
+        try require(restored["backend"] as? String == "metal", "Returning to full screen did not restore Metal rendering")
+        try require((restored["gridColumns"] as? NSNumber)?.uint32Value == initialColumns
+            && (restored["gridRows"] as? NSNumber)?.uint32Value == initialRows,
+            "Returning to full-screen size did not restore the engine grid")
         saver.stopAnimation()
         let count = diagnostics(saver)["metalFrameCount"] as? NSNumber
         pump(0.15)
         saver.animateOneFrame()
         try require(diagnostics(saver)["engineActive"] as? Bool == false, "Metal engine remained active after stop")
         try require(diagnostics(saver)["metalFrameCount"] as? NSNumber == count, "Metal frame callbacks continued after stop")
-        return running
+        return ["initial": running, "resized": resized, "restored": restored]
     }
 
     private static func diagnostics(_ saver: ScreenSaverView) -> [String: Any] {

@@ -29,6 +29,7 @@ final class OmacyRenderer: NSObject {
     var currentCycleNumber: UInt64 { currentCycle }
     var currentSession: OmacyEngineSession? { session }
     var currentEffect: String { lastSettings.effect }
+    var gridDimensions: (columns: UInt32, rows: UInt32) { (cols, rows) }
 
     private var isCoordinated: Bool {
         displayCoordinator != nil && lastSettings.syncDisplays && pinnedContent == nil && !isPreview
@@ -144,12 +145,12 @@ final class OmacyRenderer: NSObject {
         }
         return .engine
     }
-    func start() {
+    func start(limitsFrameRate: Bool = false) {
         guard let view, session != nil else { return }
         stopped = false
         displayLinkDriver.start(
             for: view,
-            limitsFrameRate: isPreview || pinnedContent != nil,
+            limitsFrameRate: limitsFrameRate || isPreview || pinnedContent != nil,
             tick: { [weak self] link in self?.tick(link) },
             stop: { [weak self] in self?.stop() }
         )

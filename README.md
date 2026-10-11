@@ -93,7 +93,7 @@ The Screensavers module writes `~/.config/macarchy/settings.json` and `~/.config
 
 Text art supports UTF-8 block and Braille characters, up to 256 columns, 128 lines and 64 KiB. PNG/SVG import converts to an 80×26 grid with block/Braille, threshold and invert controls. The app supports a saved background color and text size. Effects use their per-effect color palettes.
 
-The engine steps at 60 Hz, and app previews present at 30 FPS. The display link controls full-screen presentation. This follows the native bridge's timing policy; it does not claim identical duration or pixels to Omarchy's 120 FPS terminal loop.
+The engine steps at 60 Hz. App and system saver displays present at 30 FPS. The display link controls full-screen presentation. This follows the native bridge's timing policy; it does not claim identical duration or pixels to Omarchy's 120 FPS terminal loop.
 
 Each display rotates independently. macOS can create several preview and full-screen contexts in one host process; those contexts never wait on a shared display barrier.
 
