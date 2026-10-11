@@ -34,6 +34,7 @@ final class OmacyMetalGridRenderer {
         let layer = CAMetalLayer()
         layer.device = device
         layer.pixelFormat = .bgra8Unorm
+        layer.maximumDrawableCount = 2
         layer.framebufferOnly = true
         layer.isOpaque = true
         CATransaction.begin()
@@ -72,6 +73,7 @@ final class OmacyMetalGridRenderer {
         queue = nil
         device = nil
         retireFrameResources()
+        atlas.release()
         needsRepack = true
         hasPresented = false
     }

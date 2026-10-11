@@ -164,6 +164,10 @@ final class OmacyRenderer: NSObject {
         stopped = true
         stopSessionAndLink()
         metalRenderer.stop()
+        if let view {
+            view.wantsLayer = false
+            view.layer = nil
+        }
         cachedFont = nil
     }
     deinit {

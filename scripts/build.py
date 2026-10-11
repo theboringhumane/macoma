@@ -16,8 +16,8 @@ from check_dependencies import require_dependencies
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
-VERSION = "0.3.3"
-BUILD_NUMBER = "8"
+VERSION = "0.3.4"
+BUILD_NUMBER = "1"
 SAVER_SOURCES = ROOT / "Sources/Modules/Screensavers"
 
 

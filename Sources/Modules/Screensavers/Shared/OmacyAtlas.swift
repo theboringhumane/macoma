@@ -95,6 +95,19 @@ final class OmacyAtlas {
         return g
     }
 
+    func release() {
+        texture = nil
+        map.removeAll(keepingCapacity: false)
+        pixels.removeAll(keepingCapacity: false)
+        extraCount = 0
+        nextSlot = 1
+        builtCell = .zero
+        builtScale = 0
+        builtFontName = ""
+        builtFontSize = 0
+        generation &+= 1
+    }
+
     private func uploadFull(device: MTLDevice) {
         let desc = MTLTextureDescriptor.texture2DDescriptor(
             pixelFormat: .rgba8Unorm,

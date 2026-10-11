@@ -34,6 +34,7 @@ struct SaverHostSmoke {
 
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 360, height: 210), styleMask: [.borderless], backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
+        if arguments.contains("--visible") { window.orderFrontRegardless() }
         weak var releasedView: ScreenSaverView?
         var previewEvidence: [String: Any] = [:]
         try autoreleasepool {
@@ -53,40 +54,51 @@ struct SaverHostSmoke {
                 if index == 65, let outputURL { try snapshot(saver, at: outputURL.appendingPathComponent("preview-later.png")) }
             }
             let running = diagnostics(saver)
-            try require(running["backend"] as? String == "software", "System preview did not select the AppKit renderer")
-            try require(running["engineActive"] as? Bool == true, "System preview has no live effect engine")
-            try require(running["sharedDisplaySynchronization"] as? Bool == false, "Saver preview joined a shared display barrier")
-            try require(signatures.count > 1, "System preview emitted no changing effect frames")
-            try require(saver.hasConfigureSheet && saver.configureSheet != nil, "Saver configuration sheet is unavailable")
+            let previewVisible = window.isVisible && window.occlusionState.contains(.visible)
+            if !previewVisible {
+                try require(running["backend"] as? String == "stopped", "Occluded system preview kept a renderer attached")
+                try require(running["engineActive"] as? Bool == false, "Occluded system preview kept an active engine")
+                try require(saver.hasConfigureSheet && saver.configureSheet != nil, "Saver configuration sheet is unavailable")
+                saver.stopAnimation()
+                window.contentView = NSView(frame: window.contentLayoutRect)
+                previewEvidence = running
+                previewEvidence["occludedIdle"] = true
+            } else {
+                try require(running["backend"] as? String == "software", "System preview did not select the AppKit renderer")
+                try require(running["engineActive"] as? Bool == true, "System preview has no live effect engine")
+                try require(running["sharedDisplaySynchronization"] as? Bool == false, "Saver preview joined a shared display barrier")
+                try require(signatures.count > 1, "System preview emitted no changing effect frames")
+                try require(saver.hasConfigureSheet && saver.configureSheet != nil, "Saver configuration sheet is unavailable")
 
-            let workspace = NSWorkspace.shared.notificationCenter
-            workspace.post(name: NSWorkspace.screensDidSleepNotification, object: nil)
-            try require(diagnostics(saver)["engineActive"] as? Bool == false, "Display sleep did not release the engine")
-            workspace.post(name: NSWorkspace.screensDidWakeNotification, object: nil)
-            saver.animateOneFrame()
-            try require(diagnostics(saver)["engineActive"] as? Bool == true, "Display wake did not restart the requested animation")
+                let workspace = NSWorkspace.shared.notificationCenter
+                workspace.post(name: NSWorkspace.screensDidSleepNotification, object: nil)
+                try require(diagnostics(saver)["engineActive"] as? Bool == false, "Display sleep did not release the engine")
+                workspace.post(name: NSWorkspace.screensDidWakeNotification, object: nil)
+                saver.animateOneFrame()
+                try require(diagnostics(saver)["engineActive"] as? Bool == true, "Display wake did not restart the requested animation")
 
-            saver.stopAnimation()
-            let stopped = diagnostics(saver)
-            try require(stopped["engineActive"] as? Bool == false, "stopAnimation left a live engine")
-            saver.setFrameSize(NSSize(width: 420, height: 240))
-            saver.layoutSubtreeIfNeeded()
-            saver.animateOneFrame()
-            workspace.post(name: NSWorkspace.screensDidWakeNotification, object: nil)
-            try require(diagnostics(saver)["backend"] as? String == "stopped", "Resize or wake restarted a stopped saver")
+                saver.stopAnimation()
+                let stopped = diagnostics(saver)
+                try require(stopped["engineActive"] as? Bool == false, "stopAnimation left a live engine")
+                saver.setFrameSize(NSSize(width: 420, height: 240))
+                saver.layoutSubtreeIfNeeded()
+                saver.animateOneFrame()
+                workspace.post(name: NSWorkspace.screensDidWakeNotification, object: nil)
+                try require(diagnostics(saver)["backend"] as? String == "stopped", "Resize or wake restarted a stopped saver")
 
-            saver.startAnimation()
-            saver.animateOneFrame()
-            try require(diagnostics(saver)["engineActive"] as? Bool == true, "A stopped saver could not restart")
-            window.contentView = NSView(frame: window.contentLayoutRect)
-            try require(diagnostics(saver)["engineActive"] as? Bool == false, "Detaching the view left a live engine")
-            window.contentView = saver
-            saver.animateOneFrame()
-            try require(diagnostics(saver)["engineActive"] as? Bool == true, "Reattaching an active saver failed to resume")
-            saver.stopAnimation()
-            window.contentView = NSView(frame: window.contentLayoutRect)
-            previewEvidence = running
-            previewEvidence["uniqueFrameSignatures"] = signatures.count
+                saver.startAnimation()
+                saver.animateOneFrame()
+                try require(diagnostics(saver)["engineActive"] as? Bool == true, "A stopped saver could not restart")
+                window.contentView = NSView(frame: window.contentLayoutRect)
+                try require(diagnostics(saver)["engineActive"] as? Bool == false, "Detaching the view left a live engine")
+                window.contentView = saver
+                saver.animateOneFrame()
+                try require(diagnostics(saver)["engineActive"] as? Bool == true, "Reattaching an active saver failed to resume")
+                saver.stopAnimation()
+                window.contentView = NSView(frame: window.contentLayoutRect)
+                previewEvidence = running
+                previewEvidence["uniqueFrameSignatures"] = signatures.count
+            }
         }
         pump(0.1)
         try require(releasedView == nil, "Saver view retained itself after stop and removal")
@@ -96,7 +108,9 @@ struct SaverHostSmoke {
             "bundle": bundleURL.path,
             "principalClass": NSStringFromClass(principal),
             "preview": previewEvidence,
-            "lifecycle": ["stop", "restart", "resizeWhileStopped", "detach", "reattach", "displaySleep", "displayWake", "release"],
+            "lifecycle": outputURL != nil && previewEvidence["uniqueFrameSignatures"] != nil
+                ? ["stop", "restart", "resizeWhileStopped", "detach", "reattach", "displaySleep", "displayWake", "release"]
+                : ["occludedIdle", "stop", "release"],
             "systemSettingsChanged": false,
             "visibleWindow": arguments.contains("--visible")
         ]

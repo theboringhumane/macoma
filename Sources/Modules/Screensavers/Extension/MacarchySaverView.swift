@@ -17,6 +17,12 @@ public final class MacarchySaverView: ScreenSaverView {
     private var softwareUsesPreview = false
     private var settingsController: MacarchySaverConfiguration?
 
+    private var hostIsVisible: Bool {
+        guard let window else { return false }
+        return window.isVisible && window.occlusionState.contains(.visible)
+    }
+    private var isOcclusionSensitive: Bool { isPreview || usesSoftwarePreview }
+
     public override init?(frame: NSRect, isPreview: Bool) {
         super.init(frame: frame, isPreview: isPreview)
         prepareView()
@@ -167,7 +173,7 @@ public final class MacarchySaverView: ScreenSaverView {
 
     private func attemptStart() {
         guard animationRequested, backend == .stopped, window != nil,
-              !systemSleeping, !displaysSleeping,
+              (!isOcclusionSensitive || hostIsVisible), !systemSleeping, !displaysSleeping,
               bounds.width > 1, bounds.height > 1 else { return }
         if usesSoftwarePreview {
             startSoftware()
@@ -249,6 +255,7 @@ public final class MacarchySaverView: ScreenSaverView {
         observing = true
         if let window {
             NotificationCenter.default.addObserver(self, selector: #selector(screenChanged), name: NSWindow.didChangeScreenNotification, object: window)
+            NotificationCenter.default.addObserver(self, selector: #selector(hostVisibilityChanged), name: NSWindow.didChangeOcclusionStateNotification, object: window)
             NotificationCenter.default.addObserver(self, selector: #selector(hostWindowClosed), name: NSWindow.willCloseNotification, object: window)
         }
         let workspace = NSWorkspace.shared.notificationCenter
@@ -265,6 +272,16 @@ public final class MacarchySaverView: ScreenSaverView {
     }
 
     @objc private func screenChanged() { updateGeometry(retarget: true) }
+    @objc private func hostVisibilityChanged() {
+        guard animationRequested, isOcclusionSensitive else { return }
+        guard hostIsVisible else {
+            stopRendering()
+            return
+        }
+        guard backend == .stopped, !systemSleeping, !displaysSleeping else { return }
+        startRequestedAt = CACurrentMediaTime()
+        attemptStart()
+    }
     @objc private func hostWindowClosed() { stopAnimation() }
     @objc private func systemWillSleep() { systemSleeping = true; stopRendering() }
     @objc private func displaysWillSleep() { displaysSleeping = true; stopRendering() }
